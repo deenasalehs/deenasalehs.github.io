@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parabolas and Systems of Equations — Dr. Deena Saleh</title>
+<meta name="description" content="Covers the vertex and intercepts of a parabola, then solves systems of linear and nonlinear equations, ending in a market equilibrium and a break even point.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">Deena Saleh</a>
+  <nav class="site-nav">
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="../teaching.html">Teaching</a>
+    <a class="active" href="../teaching-notes.html">Notes</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../cv.html">CV</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<article class="post">
+  <p class="post-date">Teaching Notes · Math for Social Sciences</p>
+
+  <details class="notes-toc">
+    <summary>Math for Social Sciences</summary>
+    <ul>
+      <li><a href="numbers-inequalities-and-the-language-of-functions.html">Numbers, Inequalities, and the Language of Functions</a></li>
+      <li><a href="functions-graphs-and-transformations.html">Functions, Graphs, and Transformations</a></li>
+      <li><a href="lines-limits-and-continuity.html">Lines, Limits, and Continuity</a></li>
+      <li class="current">Parabolas and Systems of Equations</li>
+      <li><a href="the-derivative-and-what-it-measures.html">The Derivative and What It Measures</a></li>
+      <li><a href="optimization-finding-the-best-possible-outcome.html">Optimization: Finding the Best Possible Outcome</a></li>
+      <li><a href="exponential-and-logarithmic-functions-in-finance.html">Exponential and Logarithmic Functions in Finance</a></li>
+      <li><a href="functions-of-two-variables-and-partial-derivatives.html">Functions of Two Variables and Partial Derivatives</a></li>
+      <li><a href="sequences-series-and-the-mathematics-of-saving.html">Sequences, Series, and the Mathematics of Saving</a></li>
+      <li><a href="annuities-and-the-mathematics-of-loans.html">Annuities and the Mathematics of Loans</a></li>
+      <li><a href="an-introduction-to-matrix-algebra.html">An Introduction to Matrix Algebra</a></li>
+    </ul>
+  </details>
+
+  <h1>Parabolas and Systems of Equations</h1>
+
+  <p>An earlier set of notes read the slope of a line as a marginal cost and left it there. Lines, though, are only the simplest member of a larger family of curves worth being able to graph on sight, and real questions, a market price, a break even point, rarely come from a single equation in isolation. This set of notes covers the parabola, the graph of a quadratic function, and then turns to systems of two or more equations solved together, closing with the two applications that make a system worth setting up in the first place: where a market settles, and where a business stops losing money.</p>
+
+  <h2>Quadratic functions and parabolas</h2>
+  <p>A function f is quadratic when it can be written as f(x) = ax² + bx + c, with a, b, and c constants and a not equal to 0. Its graph is always a parabola, opening upward when a &gt; 0 and downward when a &lt; 0, with vertex at (−b/2a, f(−b/2a)) and y intercept simply c. The vertex is also the axis of symmetry's anchor: the parabola is a mirror image of itself across the vertical line through that point.</p>
+  <p>For g(x) = x² − 6x + 7, a = 1, b = −6, c = 7. The vertex's x coordinate is −b/2a = 6/2 = 3, and g(3) = 9 − 18 + 7 = −2, so the vertex is (3, −2), with y intercept (0, 7). Since the expression does not factor cleanly, the x intercepts come from the quadratic formula, x = [−b ± √(b² − 4ac)]/2a = (6 ± √8)/2 = 3 ± √2, close to 1.586 and 4.414. A second example shows the same mechanics with a parabola that opens downward: for f(x) = −x² − 4x + 12, the vertex works out to (−2, 16), and the x intercepts, found by factoring −(x + 6)(x − 2) = 0, are x = −6 and x = 2.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 380' role='img' aria-label='The parabola g of x equals x squared minus 6 x plus 7, opening upward with vertex at 3, negative 2, y intercept at 0, 7, and x intercepts at 3 minus the square root of 2 and 3 plus the square root of 2' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='42' y1='264.2' x2='620' y2='264.2' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='102.8' y1='24' x2='102.8' y2='340' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='178.9' y1='261.2' x2='178.9' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='178.9' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1</text>
+  <line x1='254.9' y1='261.2' x2='254.9' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='254.9' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+  <line x1='331.0' y1='261.2' x2='331.0' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='331.0' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3</text>
+  <line x1='407.1' y1='261.2' x2='407.1' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='407.1' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+  <line x1='483.1' y1='261.2' x2='483.1' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='483.1' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5</text>
+  <line x1='559.2' y1='261.2' x2='559.2' y2='267.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='559.2' y='280.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='99.8' y1='314.7' x2='105.8' y2='314.7' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='95.8' y='318.7' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−2</text>
+  <line x1='99.8' y1='213.6' x2='105.8' y2='213.6' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='95.8' y='217.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+  <line x1='99.8' y1='163.0' x2='105.8' y2='163.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='95.8' y='167.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+  <line x1='99.8' y1='112.5' x2='105.8' y2='112.5' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='95.8' y='116.5' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='99.8' y1='61.9' x2='105.8' y2='61.9' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='95.8' y='65.9' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>8</text>
+  <path d='M 64.8,5.0 L 67.5,11.2 L 70.1,17.3 L 72.8,23.3 L 75.5,29.3 L 78.1,35.2 L 80.8,41.1 L 83.4,46.9 L 86.1,52.6 L 88.8,58.3 L 91.4,63.9 L 94.1,69.4 L 96.8,74.9 L 99.4,80.3 L 102.1,85.7 L 104.7,91.0 L 107.4,96.2 L 110.1,101.4 L 112.7,106.5 L 115.4,111.5 L 118.1,116.5 L 120.7,121.4 L 123.4,126.3 L 126.0,131.1 L 128.7,135.8 L 131.4,140.5 L 134.0,145.1 L 136.7,149.7 L 139.3,154.2 L 142.0,158.6 L 144.7,163.0 L 147.3,167.3 L 150.0,171.5 L 152.7,175.7 L 155.3,179.8 L 158.0,183.9 L 160.6,187.9 L 163.3,191.8 L 166.0,195.7 L 168.6,199.5 L 171.3,203.2 L 174.0,206.9 L 176.6,210.5 L 179.3,214.1 L 181.9,217.6 L 184.6,221.0 L 187.3,224.4 L 189.9,227.7 L 192.6,231.0 L 195.2,234.2 L 197.9,237.3 L 200.6,240.4 L 203.2,243.4 L 205.9,246.3 L 208.6,249.2 L 211.2,252.0 L 213.9,254.8 L 216.5,257.5 L 219.2,260.1 L 221.9,262.7 L 224.5,265.2 L 227.2,267.6 L 229.8,270.0 L 232.5,272.3 L 235.2,274.6 L 237.8,276.8 L 240.5,278.9 L 243.2,281.0 L 245.8,283.0 L 248.5,285.0 L 251.1,286.8 L 253.8,288.7 L 256.5,290.4 L 259.1,292.1 L 261.8,293.8 L 264.5,295.4 L 267.1,296.9 L 269.8,298.3 L 272.4,299.7 L 275.1,301.1 L 277.8,302.3 L 280.4,303.5 L 283.1,304.7 L 285.7,305.8 L 288.4,306.8 L 291.1,307.8 L 293.7,308.7 L 296.4,309.5 L 299.1,310.3 L 301.7,311.0 L 304.4,311.6 L 307.0,312.2 L 309.7,312.7 L 312.4,313.2 L 315.0,313.6 L 317.7,313.9 L 320.4,314.2 L 323.0,314.4 L 325.7,314.6 L 328.3,314.7 L 331.0,314.7 L 333.7,314.7 L 336.3,314.6 L 339.0,314.4 L 341.6,314.2 L 344.3,313.9 L 347.0,313.6 L 349.6,313.2 L 352.3,312.7 L 355.0,312.2 L 357.6,311.6 L 360.3,311.0 L 362.9,310.3 L 365.6,309.5 L 368.3,308.7 L 370.9,307.8 L 373.6,306.8 L 376.3,305.8 L 378.9,304.7 L 381.6,303.5 L 384.2,302.3 L 386.9,301.1 L 389.6,299.7 L 392.2,298.3 L 394.9,296.9 L 397.5,295.4 L 400.2,293.8 L 402.9,292.1 L 405.5,290.4 L 408.2,288.7 L 410.9,286.8 L 413.5,285.0 L 416.2,283.0 L 418.8,281.0 L 421.5,278.9 L 424.2,276.8 L 426.8,274.6 L 429.5,272.3 L 432.2,270.0 L 434.8,267.6 L 437.5,265.2 L 440.1,262.7 L 442.8,260.1 L 445.5,257.5 L 448.1,254.8 L 450.8,252.0 L 453.4,249.2 L 456.1,246.3 L 458.8,243.4 L 461.4,240.4 L 464.1,237.3 L 466.8,234.2 L 469.4,231.0 L 472.1,227.7 L 474.7,224.4 L 477.4,221.0 L 480.1,217.6 L 482.7,214.1 L 485.4,210.5 L 488.0,206.9 L 490.7,203.2 L 493.4,199.5 L 496.0,195.7 L 498.7,191.8 L 501.4,187.9 L 504.0,183.9 L 506.7,179.8 L 509.3,175.7 L 512.0,171.5 L 514.7,167.3 L 517.3,163.0 L 520.0,158.6 L 522.7,154.2 L 525.3,149.7 L 528.0,145.1 L 530.6,140.5 L 533.3,135.8 L 536.0,131.1 L 538.6,126.3 L 541.3,121.4 L 543.9,116.5 L 546.6,111.5 L 549.3,106.5 L 551.9,101.4 L 554.6,96.2 L 557.3,91.0 L 559.9,85.7 L 562.6,80.3 L 565.2,74.9 L 567.9,69.4 L 570.6,63.9 L 573.2,58.3 L 575.9,52.6 L 578.6,46.9 L 581.2,41.1 L 583.9,35.2 L 586.5,29.3 L 589.2,23.3 L 591.9,17.3 L 594.5,11.2 L 597.2,5.0' fill='none' stroke='#1f6e5c' stroke-width='2.6'/>
+  <circle cx='331.0' cy='314.7' r='4' fill='#b5651d'/>
+  <circle cx='102.8' cy='87.2' r='4' fill='#1c1c1c'/>
+  <circle cx='223.4' cy='264.2' r='4' fill='#1c1c1c'/>
+  <circle cx='438.6' cy='264.2' r='4' fill='#1c1c1c'/>
+  <line x1='331.0' y1='314.7' x2='475.5' y2='331.2' stroke='#5c5c5c' stroke-width='1' stroke-dasharray='3,3'/>
+  <text x='483.1' y='331.2' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#b5651d'>vertex (3, −2)</text>
+  <text x='114.3' y='79.6' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>(0, 7)</text>
+  <text x='223.4' y='278.1' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>3 − √2</text>
+  <text x='438.6' y='278.1' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>3 + √2</text>
+  <text x='57.2' y='36.6' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.5' font-weight='normal' fill='#1c1c1c'>g(x) = x² − 6x + 7</text>
+</svg>
+<figcaption><strong>Figure.</strong> The parabola g(x) = x² − 6x + 7, opening upward from its vertex at (3, −2), with y intercept (0, 7) and x intercepts at 3 − √2 and 3 + √2.</figcaption>
+</figure>
+
+
+  <h2>Systems of linear equations</h2>
+  <p>A system of equations asks for the values of every variable that satisfy each equation at once; for two lines in the plane, that is exactly the point where the two graphs cross. Three outcomes are possible: a single intersection point (one solution), two parallel lines that never meet (no solution), or two equations describing the same line (infinitely many solutions). The two standard methods, elimination by addition and elimination by substitution, both reduce the system to a single equation in one variable.</p>
+  <p>Solving 3x − 4y = 13 together with 2x + 3y = 3 by elimination: multiplying the first equation by 3 and the second by 4 gives 9x − 12y = 39 and 8x + 12y = 12. Adding the two equations cancels y entirely, leaving 17x = 51, so x = 3; substituting back into either original equation gives y = −1. The solution is the single point (3, −1), which is exactly where the two lines cross.</p>
+  <p>A system does not have to come from two lines handed over already in equation form. A chemical manufacturer needs to fill an order for 500 liters of a 25 percent acid solution, mixing stock solutions of 30 percent and 18 percent. Letting x and y be the liters of the 30 percent and 18 percent solutions, the total volume gives x + y = 500, and the acid content gives 0.30x + 0.18y = 0.25(500) = 125. Solving the first equation for x and substituting into the second, 0.30(500 − y) + 0.18y = 125, works out to y = 208⅓ liters of the 18 percent solution and x = 291⅔ liters of the 30 percent solution, two equations in two unknowns turning a mixing problem into an exact recipe.</p>
+
+  <h2>Nonlinear systems</h2>
+  <p>A system with at least one equation that is not linear, one involving a squared term, an absolute value, a root, a variable in a denominator, or two variables multiplied together, is a nonlinear system, and it is usually solved the same way a linear one is: isolate one variable in the simpler equation, then substitute. For the system x² − 2x + y − 7 = 0 and 3x − y + 1 = 0, the second equation gives y = 3x + 1 directly. Substituting into the first, x² − 2x + (3x + 1) − 7 = 0 simplifies to x² + x − 6 = 0, which factors as (x + 3)(x − 2) = 0, giving x = −3 or x = 2. Each x value then fixes y through y = 3x + 1: x = −3 gives y = −8, and x = 2 gives y = 7, so the system has two solutions, (−3, −8) and (2, 7), which can be checked by substituting each pair back into both original equations.</p>
+
+  <h2>Applications: equilibrium and break even</h2>
+  <p>When a supply curve and a demand curve for the same product are drawn on the same axes, the point where they cross is the point of equilibrium, the price and quantity at which buyers and sellers agree. Suppose supply is given by p = (8/100)q + 50 and demand by p = −(7/100)q + 65. Setting the two equal and solving gives q = 100 and p = 58, the equilibrium before any tax. If a tax of 1.50 per unit is imposed on the manufacturer, the supply curve shifts to p = (8/100)q + 51.50, and solving the system again gives a new equilibrium at q = 90 and p = 58.70. Total revenue, price times quantity, falls from 58 × 100 = 5800 before the tax to 58.70 × 90 = 5283 after it, a system of two linear equations, solved twice, tracking exactly how a tax moves a market.</p>
+
+  <figure class="chart">
+<svg viewBox='0 0 640 380' role='img' aria-label='A supply and demand diagram showing the market equilibrium shifting from a price of 58 dollars and quantity 100 before a 1.50 dollar per unit tax, to a price of 58.70 dollars and quantity 90 after the tax' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='46' y1='336.0' x2='616' y2='336.0' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='46.0' y1='24' x2='46.0' y2='336' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='213.6' y1='333.0' x2='213.6' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='213.6' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>50</text>
+  <line x1='347.8' y1='333.0' x2='347.8' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='347.8' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>90</text>
+  <line x1='381.3' y1='333.0' x2='381.3' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='381.3' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>100</text>
+  <line x1='548.9' y1='333.0' x2='548.9' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='548.9' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>150</text>
+  <line x1='43.0' y1='265.1' x2='49.0' y2='265.1' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='39.0' y='269.1' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>50</text>
+  <line x1='43.0' y1='194.2' x2='49.0' y2='194.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='39.0' y='198.2' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>55</text>
+  <line x1='43.0' y1='151.6' x2='49.0' y2='151.6' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='39.0' y='155.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>58</text>
+  <line x1='43.0' y1='123.3' x2='49.0' y2='123.3' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='39.0' y='127.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>60</text>
+  <line x1='43.0' y1='52.4' x2='49.0' y2='52.4' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='39.0' y='56.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>65</text>
+  <path d='M 46.0,52.4 L 48.9,53.2 L 51.7,54.1 L 54.5,54.9 L 57.4,55.7 L 60.2,56.6 L 63.1,57.4 L 66.0,58.3 L 68.8,59.1 L 71.7,60.0 L 74.5,60.8 L 77.3,61.6 L 80.2,62.5 L 83.1,63.3 L 85.9,64.2 L 88.8,65.0 L 91.6,65.9 L 94.4,66.7 L 97.3,67.6 L 100.1,68.4 L 103.0,69.2 L 105.9,70.1 L 108.7,70.9 L 111.5,71.8 L 114.4,72.6 L 117.2,73.5 L 120.1,74.3 L 123.0,75.1 L 125.8,76.0 L 128.6,76.8 L 131.5,77.7 L 134.3,78.5 L 137.2,79.4 L 140.1,80.2 L 142.9,81.1 L 145.8,81.9 L 148.6,82.7 L 151.4,83.6 L 154.3,84.4 L 157.1,85.3 L 160.0,86.1 L 162.9,87.0 L 165.7,87.8 L 168.6,88.6 L 171.4,89.5 L 174.2,90.3 L 177.1,91.2 L 180.0,92.0 L 182.8,92.9 L 185.7,93.7 L 188.5,94.6 L 191.3,95.4 L 194.2,96.2 L 197.0,97.1 L 199.9,97.9 L 202.8,98.8 L 205.6,99.6 L 208.5,100.5 L 211.3,101.3 L 214.1,102.1 L 217.0,103.0 L 219.8,103.8 L 222.7,104.7 L 225.6,105.5 L 228.4,106.4 L 231.2,107.2 L 234.1,108.1 L 237.0,108.9 L 239.8,109.7 L 242.6,110.6 L 245.5,111.4 L 248.3,112.3 L 251.2,113.1 L 254.0,114.0 L 256.9,114.8 L 259.8,115.6 L 262.6,116.5 L 265.5,117.3 L 268.3,118.2 L 271.1,119.0 L 274.0,119.9 L 276.9,120.7 L 279.7,121.6 L 282.5,122.4 L 285.4,123.2 L 288.2,124.1 L 291.1,124.9 L 293.9,125.8 L 296.8,126.6 L 299.6,127.5 L 302.5,128.3 L 305.3,129.2 L 308.2,130.0 L 311.0,130.8 L 313.9,131.7 L 316.8,132.5 L 319.6,133.4 L 322.5,134.2 L 325.3,135.1 L 328.2,135.9 L 331.0,136.7 L 333.9,137.6 L 336.7,138.4 L 339.6,139.3 L 342.4,140.1 L 345.2,141.0 L 348.1,141.8 L 351.0,142.7 L 353.8,143.5 L 356.7,144.3 L 359.5,145.2 L 362.3,146.0 L 365.2,146.9 L 368.0,147.7 L 370.9,148.6 L 373.8,149.4 L 376.6,150.2 L 379.4,151.1 L 382.3,151.9 L 385.2,152.8 L 388.0,153.6 L 390.8,154.5 L 393.7,155.3 L 396.6,156.2 L 399.4,157.0 L 402.2,157.8 L 405.1,158.7 L 407.9,159.5 L 410.8,160.4 L 413.7,161.2 L 416.5,162.1 L 419.3,162.9 L 422.2,163.7 L 425.1,164.6 L 427.9,165.4 L 430.8,166.3 L 433.6,167.1 L 436.5,168.0 L 439.3,168.8 L 442.2,169.7 L 445.0,170.5 L 447.8,171.3 L 450.7,172.2 L 453.5,173.0 L 456.4,173.9 L 459.2,174.7 L 462.1,175.6 L 464.9,176.4 L 467.8,177.2 L 470.6,178.1 L 473.5,178.9 L 476.4,179.8 L 479.2,180.6 L 482.1,181.5 L 484.9,182.3 L 487.8,183.2 L 490.6,184.0 L 493.4,184.8 L 496.3,185.7 L 499.2,186.5 L 502.0,187.4 L 504.8,188.2 L 507.7,189.1 L 510.6,189.9 L 513.4,190.7 L 516.2,191.6 L 519.1,192.4 L 522.0,193.3 L 524.8,194.1 L 527.7,195.0 L 530.5,195.8 L 533.3,196.7 L 536.2,197.5 L 539.1,198.3 L 541.9,199.2 L 544.8,200.0 L 547.6,200.9 L 550.4,201.7 L 553.3,202.6 L 556.2,203.4 L 559.0,204.3 L 561.8,205.1 L 564.7,205.9 L 567.6,206.8 L 570.4,207.6 L 573.2,208.5 L 576.1,209.3 L 578.9,210.2 L 581.8,211.0 L 584.7,211.8 L 587.5,212.7 L 590.4,213.5 L 593.2,214.4 L 596.1,215.2 L 598.9,216.1 L 601.8,216.9 L 604.6,217.8 L 607.5,218.6 L 610.3,219.4 L 613.1,220.3 L 616.0,221.1' fill='none' stroke='#1f6e5c' stroke-width='2.5'/>
+  <path d='M 46.0,265.1 L 48.9,264.1 L 51.7,263.2 L 54.5,262.2 L 57.4,261.2 L 60.2,260.3 L 63.1,259.3 L 66.0,258.3 L 68.8,257.4 L 71.7,256.4 L 74.5,255.4 L 77.3,254.5 L 80.2,253.5 L 83.1,252.6 L 85.9,251.6 L 88.8,250.6 L 91.6,249.7 L 94.4,248.7 L 97.3,247.7 L 100.1,246.8 L 103.0,245.8 L 105.9,244.8 L 108.7,243.9 L 111.5,242.9 L 114.4,241.9 L 117.2,241.0 L 120.1,240.0 L 123.0,239.1 L 125.8,238.1 L 128.6,237.1 L 131.5,236.2 L 134.3,235.2 L 137.2,234.2 L 140.1,233.3 L 142.9,232.3 L 145.8,231.3 L 148.6,230.4 L 151.4,229.4 L 154.3,228.4 L 157.1,227.5 L 160.0,226.5 L 162.9,225.6 L 165.7,224.6 L 168.6,223.6 L 171.4,222.7 L 174.2,221.7 L 177.1,220.7 L 180.0,219.8 L 182.8,218.8 L 185.7,217.8 L 188.5,216.9 L 191.3,215.9 L 194.2,214.9 L 197.0,214.0 L 199.9,213.0 L 202.8,212.1 L 205.6,211.1 L 208.5,210.1 L 211.3,209.2 L 214.1,208.2 L 217.0,207.2 L 219.8,206.3 L 222.7,205.3 L 225.6,204.3 L 228.4,203.4 L 231.2,202.4 L 234.1,201.4 L 237.0,200.5 L 239.8,199.5 L 242.6,198.5 L 245.5,197.6 L 248.3,196.6 L 251.2,195.7 L 254.0,194.7 L 256.9,193.7 L 259.8,192.8 L 262.6,191.8 L 265.5,190.8 L 268.3,189.9 L 271.1,188.9 L 274.0,187.9 L 276.9,187.0 L 279.7,186.0 L 282.5,185.0 L 285.4,184.1 L 288.2,183.1 L 291.1,182.2 L 293.9,181.2 L 296.8,180.2 L 299.6,179.3 L 302.5,178.3 L 305.3,177.3 L 308.2,176.4 L 311.0,175.4 L 313.9,174.4 L 316.8,173.5 L 319.6,172.5 L 322.5,171.5 L 325.3,170.6 L 328.2,169.6 L 331.0,168.7 L 333.9,167.7 L 336.7,166.7 L 339.6,165.8 L 342.4,164.8 L 345.2,163.8 L 348.1,162.9 L 351.0,161.9 L 353.8,160.9 L 356.7,160.0 L 359.5,159.0 L 362.3,158.0 L 365.2,157.1 L 368.0,156.1 L 370.9,155.2 L 373.8,154.2 L 376.6,153.2 L 379.4,152.3 L 382.3,151.3 L 385.2,150.3 L 388.0,149.4 L 390.8,148.4 L 393.7,147.4 L 396.6,146.5 L 399.4,145.5 L 402.2,144.5 L 405.1,143.6 L 407.9,142.6 L 410.8,141.7 L 413.7,140.7 L 416.5,139.7 L 419.3,138.8 L 422.2,137.8 L 425.1,136.8 L 427.9,135.9 L 430.8,134.9 L 433.6,133.9 L 436.5,133.0 L 439.3,132.0 L 442.2,131.0 L 445.0,130.1 L 447.8,129.1 L 450.7,128.2 L 453.5,127.2 L 456.4,126.2 L 459.2,125.3 L 462.1,124.3 L 464.9,123.3 L 467.8,122.4 L 470.6,121.4 L 473.5,120.4 L 476.4,119.5 L 479.2,118.5 L 482.1,117.5 L 484.9,116.6 L 487.8,115.6 L 490.6,114.7 L 493.4,113.7 L 496.3,112.7 L 499.2,111.8 L 502.0,110.8 L 504.8,109.8 L 507.7,108.9 L 510.6,107.9 L 513.4,106.9 L 516.2,106.0 L 519.1,105.0 L 522.0,104.0 L 524.8,103.1 L 527.7,102.1 L 530.5,101.1 L 533.3,100.2 L 536.2,99.2 L 539.1,98.3 L 541.9,97.3 L 544.8,96.3 L 547.6,95.4 L 550.4,94.4 L 553.3,93.4 L 556.2,92.5 L 559.0,91.5 L 561.8,90.5 L 564.7,89.6 L 567.6,88.6 L 570.4,87.6 L 573.2,86.7 L 576.1,85.7 L 578.9,84.8 L 581.8,83.8 L 584.7,82.8 L 587.5,81.9 L 590.4,80.9 L 593.2,79.9 L 596.1,79.0 L 598.9,78.0 L 601.8,77.0 L 604.6,76.1 L 607.5,75.1 L 610.3,74.1 L 613.1,73.2 L 616.0,72.2' fill='none' stroke='#b5651d' stroke-width='2.5'/>
+  <path d='M 46.0,243.8 L 48.9,242.9 L 51.7,241.9 L 54.5,240.9 L 57.4,240.0 L 60.2,239.0 L 63.1,238.0 L 66.0,237.1 L 68.8,236.1 L 71.7,235.1 L 74.5,234.2 L 77.3,233.2 L 80.2,232.2 L 83.1,231.3 L 85.9,230.3 L 88.8,229.4 L 91.6,228.4 L 94.4,227.4 L 97.3,226.5 L 100.1,225.5 L 103.0,224.5 L 105.9,223.6 L 108.7,222.6 L 111.5,221.6 L 114.4,220.7 L 117.2,219.7 L 120.1,218.7 L 123.0,217.8 L 125.8,216.8 L 128.6,215.9 L 131.5,214.9 L 134.3,213.9 L 137.2,213.0 L 140.1,212.0 L 142.9,211.0 L 145.8,210.1 L 148.6,209.1 L 151.4,208.1 L 154.3,207.2 L 157.1,206.2 L 160.0,205.2 L 162.9,204.3 L 165.7,203.3 L 168.6,202.4 L 171.4,201.4 L 174.2,200.4 L 177.1,199.5 L 180.0,198.5 L 182.8,197.5 L 185.7,196.6 L 188.5,195.6 L 191.3,194.6 L 194.2,193.7 L 197.0,192.7 L 199.9,191.7 L 202.8,190.8 L 205.6,189.8 L 208.5,188.8 L 211.3,187.9 L 214.1,186.9 L 217.0,186.0 L 219.8,185.0 L 222.7,184.0 L 225.6,183.1 L 228.4,182.1 L 231.2,181.1 L 234.1,180.2 L 237.0,179.2 L 239.8,178.2 L 242.6,177.3 L 245.5,176.3 L 248.3,175.3 L 251.2,174.4 L 254.0,173.4 L 256.9,172.5 L 259.8,171.5 L 262.6,170.5 L 265.5,169.6 L 268.3,168.6 L 271.1,167.6 L 274.0,166.7 L 276.9,165.7 L 279.7,164.7 L 282.5,163.8 L 285.4,162.8 L 288.2,161.8 L 291.1,160.9 L 293.9,159.9 L 296.8,159.0 L 299.6,158.0 L 302.5,157.0 L 305.3,156.1 L 308.2,155.1 L 311.0,154.1 L 313.9,153.2 L 316.8,152.2 L 319.6,151.2 L 322.5,150.3 L 325.3,149.3 L 328.2,148.3 L 331.0,147.4 L 333.9,146.4 L 336.7,145.5 L 339.6,144.5 L 342.4,143.5 L 345.2,142.6 L 348.1,141.6 L 351.0,140.6 L 353.8,139.7 L 356.7,138.7 L 359.5,137.7 L 362.3,136.8 L 365.2,135.8 L 368.0,134.8 L 370.9,133.9 L 373.8,132.9 L 376.6,132.0 L 379.4,131.0 L 382.3,130.0 L 385.2,129.1 L 388.0,128.1 L 390.8,127.1 L 393.7,126.2 L 396.6,125.2 L 399.4,124.2 L 402.2,123.3 L 405.1,122.3 L 407.9,121.3 L 410.8,120.4 L 413.7,119.4 L 416.5,118.5 L 419.3,117.5 L 422.2,116.5 L 425.1,115.6 L 427.9,114.6 L 430.8,113.6 L 433.6,112.7 L 436.5,111.7 L 439.3,110.7 L 442.2,109.8 L 445.0,108.8 L 447.8,107.8 L 450.7,106.9 L 453.5,105.9 L 456.4,104.9 L 459.2,104.0 L 462.1,103.0 L 464.9,102.1 L 467.8,101.1 L 470.6,100.1 L 473.5,99.2 L 476.4,98.2 L 479.2,97.2 L 482.1,96.3 L 484.9,95.3 L 487.8,94.3 L 490.6,93.4 L 493.4,92.4 L 496.3,91.4 L 499.2,90.5 L 502.0,89.5 L 504.8,88.6 L 507.7,87.6 L 510.6,86.6 L 513.4,85.7 L 516.2,84.7 L 519.1,83.7 L 522.0,82.8 L 524.8,81.8 L 527.7,80.8 L 530.5,79.9 L 533.3,78.9 L 536.2,77.9 L 539.1,77.0 L 541.9,76.0 L 544.8,75.1 L 547.6,74.1 L 550.4,73.1 L 553.3,72.2 L 556.2,71.2 L 559.0,70.2 L 561.8,69.3 L 564.7,68.3 L 567.6,67.3 L 570.4,66.4 L 573.2,65.4 L 576.1,64.4 L 578.9,63.5 L 581.8,62.5 L 584.7,61.6 L 587.5,60.6 L 590.4,59.6 L 593.2,58.7 L 596.1,57.7 L 598.9,56.7 L 601.8,55.8 L 604.6,54.8 L 607.5,53.8 L 610.3,52.9 L 613.1,51.9 L 616.0,50.9' fill='none' stroke='#b5651d' stroke-width='2.2' stroke-dasharray='7,4'/>
+  <circle cx='381.3' cy='151.6' r='4.5' fill='#1c1c1c'/>
+  <circle cx='347.8' cy='141.7' r='4.5' fill='#1c1c1c'/>
+  <line x1='381.3' y1='336.0' x2='381.3' y2='151.6' stroke='#5c5c5c' stroke-width='1' stroke-dasharray='3,3'/>
+  <line x1='347.8' y1='336.0' x2='347.8' y2='141.7' stroke='#5c5c5c' stroke-width='1' stroke-dasharray='3,3'/>
+  <text x='391.4' y='145.6' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#1c1c1c'>before tax: (100, $58)</text>
+  <text x='230.4' y='131.7' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#1c1c1c'>after tax: (90, $58.70)</text>
+  <text x='605.9' y='210.1' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#1f6e5c'>demand</text>
+  <text x='605.9' y='91.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#b5651d'>supply, before tax</text>
+  <text x='605.9' y='44.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#b5651d'>supply, after tax</text>
+  <text x='52.7' y='31.1' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.3' font-weight='normal' fill='#1c1c1c'>market equilibrium before and after a $1.50 per unit tax</text>
+</svg>
+<figcaption><strong>Figure.</strong> The demand curve stays fixed while the supply curve shifts upward by the tax amount, moving the equilibrium from (100, $58) to (90, $58.70) and cutting total revenue from $5,800 to $5,283.</figcaption>
+</figure>
+
+  <p>A break even point asks a related question of a single firm rather than a whole market: at what output does total revenue just cover total cost? A manufacturer sells a product at 8 per unit, with fixed cost of 5000 and variable cost of 22/9 per unit, so total revenue is TR = 8q and total cost is TC = (22/9)q + 5000. Setting TR = TC and solving gives q = 900, the break even output, at which TR = TC = 7200. Away from that point the same two equations give the profit or loss directly: at 1800 units, TR − TC works out to a profit of 5000, while at only 450 units it works out to a loss of 2500. Running the equation in the other direction, solving 10,000 = 8q − [(22/9)q + 5000] for q, shows that 2700 units need to be sold to reach a profit of exactly 10,000, the same system of equations, solved for whichever quantity happens to be unknown.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 380' role='img' aria-label='Total revenue TR equals 8 q and total cost TC equals 22 ninths q plus 5000 crossing at the break even point 900, 7200, with a loss of 2500 marked at 450 units and a profit of 5000 marked at 1800 units' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='58' y1='336.0' x2='620' y2='336.0' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='58.0' y1='24' x2='58.0' y2='336' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='181.4' y1='333.0' x2='181.4' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='181.4' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>450</text>
+  <line x1='304.7' y1='333.0' x2='304.7' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='304.7' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>900</text>
+  <line x1='428.1' y1='333.0' x2='428.1' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='428.1' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1350</text>
+  <line x1='551.5' y1='333.0' x2='551.5' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='551.5' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1800</text>
+  <line x1='606.3' y1='333.0' x2='606.3' y2='339.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='606.3' y='352.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2000</text>
+  <line x1='55.0' y1='246.9' x2='61.0' y2='246.9' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='250.9' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5,000</text>
+  <line x1='55.0' y1='157.7' x2='61.0' y2='157.7' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='161.7' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>10,000</text>
+  <line x1='55.0' y1='68.6' x2='61.0' y2='68.6' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='72.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>15,000</text>
+  <path d='M 58.0,336.0 L 60.8,334.6 L 63.5,333.1 L 66.3,331.7 L 69.1,330.2 L 71.8,328.8 L 74.6,327.4 L 77.4,325.9 L 80.2,324.5 L 82.9,323.0 L 85.7,321.6 L 88.5,320.2 L 91.2,318.7 L 94.0,317.3 L 96.8,315.8 L 99.5,314.4 L 102.3,313.0 L 105.1,311.5 L 107.8,310.1 L 110.6,308.6 L 113.4,307.2 L 116.1,305.7 L 118.9,304.3 L 121.7,302.9 L 124.5,301.4 L 127.2,300.0 L 130.0,298.5 L 132.8,297.1 L 135.5,295.7 L 138.3,294.2 L 141.1,292.8 L 143.8,291.3 L 146.6,289.9 L 149.4,288.5 L 152.1,287.0 L 154.9,285.6 L 157.7,284.1 L 160.4,282.7 L 163.2,281.3 L 166.0,279.8 L 168.8,278.4 L 171.5,276.9 L 174.3,275.5 L 177.1,274.1 L 179.8,272.6 L 182.6,271.2 L 185.4,269.7 L 188.1,268.3 L 190.9,266.9 L 193.7,265.4 L 196.4,264.0 L 199.2,262.5 L 202.0,261.1 L 204.8,259.7 L 207.5,258.2 L 210.3,256.8 L 213.1,255.3 L 215.8,253.9 L 218.6,252.4 L 221.4,251.0 L 224.1,249.6 L 226.9,248.1 L 229.7,246.7 L 232.4,245.2 L 235.2,243.8 L 238.0,242.4 L 240.7,240.9 L 243.5,239.5 L 246.3,238.0 L 249.1,236.6 L 251.8,235.2 L 254.6,233.7 L 257.4,232.3 L 260.1,230.8 L 262.9,229.4 L 265.7,228.0 L 268.4,226.5 L 271.2,225.1 L 274.0,223.6 L 276.7,222.2 L 279.5,220.8 L 282.3,219.3 L 285.0,217.9 L 287.8,216.4 L 290.6,215.0 L 293.4,213.6 L 296.1,212.1 L 298.9,210.7 L 301.7,209.2 L 304.4,207.8 L 307.2,206.4 L 310.0,204.9 L 312.7,203.5 L 315.5,202.0 L 318.3,200.6 L 321.0,199.1 L 323.8,197.7 L 326.6,196.3 L 329.4,194.8 L 332.1,193.4 L 334.9,191.9 L 337.7,190.5 L 340.4,189.1 L 343.2,187.6 L 346.0,186.2 L 348.7,184.7 L 351.5,183.3 L 354.3,181.9 L 357.0,180.4 L 359.8,179.0 L 362.6,177.5 L 365.3,176.1 L 368.1,174.7 L 370.9,173.2 L 373.7,171.8 L 376.4,170.3 L 379.2,168.9 L 382.0,167.5 L 384.7,166.0 L 387.5,164.6 L 390.3,163.1 L 393.0,161.7 L 395.8,160.3 L 398.6,158.8 L 401.3,157.4 L 404.1,155.9 L 406.9,154.5 L 409.6,153.1 L 412.4,151.6 L 415.2,150.2 L 418.0,148.7 L 420.7,147.3 L 423.5,145.8 L 426.3,144.4 L 429.0,143.0 L 431.8,141.5 L 434.6,140.1 L 437.3,138.6 L 440.1,137.2 L 442.9,135.8 L 445.6,134.3 L 448.4,132.9 L 451.2,131.4 L 453.9,130.0 L 456.7,128.6 L 459.5,127.1 L 462.3,125.7 L 465.0,124.2 L 467.8,122.8 L 470.6,121.4 L 473.3,119.9 L 476.1,118.5 L 478.9,117.0 L 481.6,115.6 L 484.4,114.2 L 487.2,112.7 L 489.9,111.3 L 492.7,109.8 L 495.5,108.4 L 498.3,107.0 L 501.0,105.5 L 503.8,104.1 L 506.6,102.6 L 509.3,101.2 L 512.1,99.8 L 514.9,98.3 L 517.6,96.9 L 520.4,95.4 L 523.2,94.0 L 525.9,92.5 L 528.7,91.1 L 531.5,89.7 L 534.2,88.2 L 537.0,86.8 L 539.8,85.3 L 542.6,83.9 L 545.3,82.5 L 548.1,81.0 L 550.9,79.6 L 553.6,78.1 L 556.4,76.7 L 559.2,75.3 L 561.9,73.8 L 564.7,72.4 L 567.5,70.9 L 570.2,69.5 L 573.0,68.1 L 575.8,66.6 L 578.5,65.2 L 581.3,63.7 L 584.1,62.3 L 586.9,60.9 L 589.6,59.4 L 592.4,58.0 L 595.2,56.5 L 597.9,55.1 L 600.7,53.7 L 603.5,52.2 L 606.2,50.8 L 609.0,49.3 L 611.8,47.9' fill='none' stroke='#1f6e5c' stroke-width='2.5'/>
+  <path d='M 58.0,246.9 L 60.8,246.4 L 63.5,246.0 L 66.3,245.5 L 69.1,245.1 L 71.8,244.7 L 74.6,244.2 L 77.4,243.8 L 80.2,243.3 L 82.9,242.9 L 85.7,242.5 L 88.5,242.0 L 91.2,241.6 L 94.0,241.1 L 96.8,240.7 L 99.5,240.3 L 102.3,239.8 L 105.1,239.4 L 107.8,238.9 L 110.6,238.5 L 113.4,238.1 L 116.1,237.6 L 118.9,237.2 L 121.7,236.7 L 124.5,236.3 L 127.2,235.9 L 130.0,235.4 L 132.8,235.0 L 135.5,234.5 L 138.3,234.1 L 141.1,233.7 L 143.8,233.2 L 146.6,232.8 L 149.4,232.3 L 152.1,231.9 L 154.9,231.5 L 157.7,231.0 L 160.4,230.6 L 163.2,230.1 L 166.0,229.7 L 168.8,229.3 L 171.5,228.8 L 174.3,228.4 L 177.1,227.9 L 179.8,227.5 L 182.6,227.0 L 185.4,226.6 L 188.1,226.2 L 190.9,225.7 L 193.7,225.3 L 196.4,224.8 L 199.2,224.4 L 202.0,224.0 L 204.8,223.5 L 207.5,223.1 L 210.3,222.6 L 213.1,222.2 L 215.8,221.8 L 218.6,221.3 L 221.4,220.9 L 224.1,220.4 L 226.9,220.0 L 229.7,219.6 L 232.4,219.1 L 235.2,218.7 L 238.0,218.2 L 240.7,217.8 L 243.5,217.4 L 246.3,216.9 L 249.1,216.5 L 251.8,216.0 L 254.6,215.6 L 257.4,215.2 L 260.1,214.7 L 262.9,214.3 L 265.7,213.8 L 268.4,213.4 L 271.2,213.0 L 274.0,212.5 L 276.7,212.1 L 279.5,211.6 L 282.3,211.2 L 285.0,210.8 L 287.8,210.3 L 290.6,209.9 L 293.4,209.4 L 296.1,209.0 L 298.9,208.6 L 301.7,208.1 L 304.4,207.7 L 307.2,207.2 L 310.0,206.8 L 312.7,206.4 L 315.5,205.9 L 318.3,205.5 L 321.0,205.0 L 323.8,204.6 L 326.6,204.2 L 329.4,203.7 L 332.1,203.3 L 334.9,202.8 L 337.7,202.4 L 340.4,202.0 L 343.2,201.5 L 346.0,201.1 L 348.7,200.6 L 351.5,200.2 L 354.3,199.8 L 357.0,199.3 L 359.8,198.9 L 362.6,198.4 L 365.3,198.0 L 368.1,197.6 L 370.9,197.1 L 373.7,196.7 L 376.4,196.2 L 379.2,195.8 L 382.0,195.4 L 384.7,194.9 L 387.5,194.5 L 390.3,194.0 L 393.0,193.6 L 395.8,193.2 L 398.6,192.7 L 401.3,192.3 L 404.1,191.8 L 406.9,191.4 L 409.6,191.0 L 412.4,190.5 L 415.2,190.1 L 418.0,189.6 L 420.7,189.2 L 423.5,188.8 L 426.3,188.3 L 429.0,187.9 L 431.8,187.4 L 434.6,187.0 L 437.3,186.6 L 440.1,186.1 L 442.9,185.7 L 445.6,185.2 L 448.4,184.8 L 451.2,184.4 L 453.9,183.9 L 456.7,183.5 L 459.5,183.0 L 462.3,182.6 L 465.0,182.2 L 467.8,181.7 L 470.6,181.3 L 473.3,180.8 L 476.1,180.4 L 478.9,180.0 L 481.6,179.5 L 484.4,179.1 L 487.2,178.6 L 489.9,178.2 L 492.7,177.8 L 495.5,177.3 L 498.3,176.9 L 501.0,176.4 L 503.8,176.0 L 506.6,175.5 L 509.3,175.1 L 512.1,174.7 L 514.9,174.2 L 517.6,173.8 L 520.4,173.3 L 523.2,172.9 L 525.9,172.5 L 528.7,172.0 L 531.5,171.6 L 534.2,171.1 L 537.0,170.7 L 539.8,170.3 L 542.6,169.8 L 545.3,169.4 L 548.1,168.9 L 550.9,168.5 L 553.6,168.1 L 556.4,167.6 L 559.2,167.2 L 561.9,166.7 L 564.7,166.3 L 567.5,165.9 L 570.2,165.4 L 573.0,165.0 L 575.8,164.5 L 578.5,164.1 L 581.3,163.7 L 584.1,163.2 L 586.9,162.8 L 589.6,162.3 L 592.4,161.9 L 595.2,161.5 L 597.9,161.0 L 600.7,160.6 L 603.5,160.1 L 606.2,159.7 L 609.0,159.3 L 611.8,158.8' fill='none' stroke='#b5651d' stroke-width='2.5'/>
+  <line x1='304.7' y1='336.0' x2='304.7' y2='207.6' stroke='#5c5c5c' stroke-width='1' stroke-dasharray='3,3'/>
+  <circle cx='304.7' cy='207.6' r='4' fill='#1c1c1c'/>
+  <line x1='304.7' y1='207.6' x2='315.7' y2='177.3' stroke='#5c5c5c' stroke-width='1' stroke-dasharray='2,3'/>
+  <circle cx='181.4' cy='271.8' r='3.5' fill='#1f6e5c'/>
+  <circle cx='181.4' cy='227.2' r='3.5' fill='#b5651d'/>
+  <line x1='181.4' y1='271.8' x2='181.4' y2='227.2' stroke='#1c1c1c' stroke-width='1.3' stroke-dasharray='2,3'/>
+  <circle cx='551.5' cy='79.3' r='3.5' fill='#1f6e5c'/>
+  <circle cx='551.5' cy='168.4' r='3.5' fill='#b5651d'/>
+  <line x1='551.5' y1='168.4' x2='551.5' y2='79.3' stroke='#1c1c1c' stroke-width='1.3' stroke-dasharray='2,3'/>
+  <text x='337.6' y='170.2' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#1c1c1c'>break even: (900, 7,200)</text>
+  <text x='110.1' y='251.3' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>loss: 2,500</text>
+  <text x='439.1' y='118.5' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>profit: 5,000</text>
+  <text x='606.3' y='29.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#1f6e5c'>TR = 8q</text>
+  <text x='611.8' y='171.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11.5' font-weight='normal' fill='#b5651d'>TC = (22/9)q + 5,000</text>
+  <text x='59.4' y='32.9' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.3' font-weight='normal' fill='#1c1c1c'>total revenue and total cost</text>
+</svg>
+<figcaption><strong>Figure.</strong> Total revenue and total cost crossing at the break even point (900, 7,200). Below that output the firm loses money, 2,500 at 450 units; above it the firm profits, 5,000 at 1,800 units.</figcaption>
+</figure>
+
+
+  <p>A parabola and a system of equations look like very different pieces of algebra, but both answer a version of the same practical question: where is a quantity at its largest, smallest, or exactly balanced against another one? That question reappears constantly once calculus enters the course, with the derivative offering a second, more general way to find exactly the kind of best point a parabola's vertex already finds algebraically.</p>
+
+  <p class="source-note">Source: Ernest F. Haeussler Jr., Richard S. Paul, and Richard J. Wood, <em>Introductory Mathematical Analysis for Business, Economics, and the Life and Social Sciences</em>, 14th edition (Pearson Canada, 2019), chapter 3, covering quadratic functions, systems of linear equations, nonlinear systems, and applications of systems of equations.</p>
+    <div class="post-keywords"><span class="kw-label">Keywords:</span> <span class="kw">quadratic functions and parabolas</span> <span class="kw">vertex of a parabola</span> <span class="kw">systems of linear equations</span> <span class="kw">nonlinear systems</span> <span class="kw">market equilibrium</span> <span class="kw">break even point</span> <span class="kw">elimination and substitution</span></div>
+  <nav class="post-pager">
+    <a class="pager-prev" href="lines-limits-and-continuity.html">&larr; Lines, Limits, and Continuity</a>
+    <a class="pager-all" href="math-for-social-sciences.html">All Math for Social Sciences Notes</a>
+    <a class="pager-next" href="the-derivative-and-what-it-measures.html">The Derivative and What It Measures &rarr;</a>
+  </nav>
+</article>
+
+<footer class="site-footer">
+  <p>deenasalih@outlook.com · Istanbul, Türkiye</p>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=4Ce_HSYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a> ·
+    <a href="https://x.com/DeenaSaleh9" target="_blank" rel="noopener">X</a> ·
+    <a href="https://www.linkedin.com/in/deena-saleh-ph-d-a97951b3/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://orcid.org/0000-0003-4628-4064" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</footer>
+
+</body>
+</html>

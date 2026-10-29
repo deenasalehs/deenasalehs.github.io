@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Introduction to Matrix Algebra — Dr. Deena Saleh</title>
+<meta name="description" content="Introduces matrices as a way to organize numbers, writes a system of equations as AX equals B, solves one by row reduction, and finds and uses a matrix inverse.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">Deena Saleh</a>
+  <nav class="site-nav">
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="../teaching.html">Teaching</a>
+    <a class="active" href="../teaching-notes.html">Notes</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../cv.html">CV</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<article class="post">
+  <p class="post-date">Teaching Notes · Math for Social Sciences</p>
+
+  <details class="notes-toc">
+    <summary>Math for Social Sciences</summary>
+    <ul>
+      <li><a href="numbers-inequalities-and-the-language-of-functions.html">Numbers, Inequalities, and the Language of Functions</a></li>
+      <li><a href="functions-graphs-and-transformations.html">Functions, Graphs, and Transformations</a></li>
+      <li><a href="lines-limits-and-continuity.html">Lines, Limits, and Continuity</a></li>
+      <li><a href="parabolas-and-systems-of-equations.html">Parabolas and Systems of Equations</a></li>
+      <li><a href="the-derivative-and-what-it-measures.html">The Derivative and What It Measures</a></li>
+      <li><a href="optimization-finding-the-best-possible-outcome.html">Optimization: Finding the Best Possible Outcome</a></li>
+      <li><a href="exponential-and-logarithmic-functions-in-finance.html">Exponential and Logarithmic Functions in Finance</a></li>
+      <li><a href="functions-of-two-variables-and-partial-derivatives.html">Functions of Two Variables and Partial Derivatives</a></li>
+      <li><a href="sequences-series-and-the-mathematics-of-saving.html">Sequences, Series, and the Mathematics of Saving</a></li>
+      <li><a href="annuities-and-the-mathematics-of-loans.html">Annuities and the Mathematics of Loans</a></li>
+      <li class="current">An Introduction to Matrix Algebra</li>
+    </ul>
+  </details>
+
+  <h1>An Introduction to Matrix Algebra</h1>
+
+  <p>Every set of notes so far has worked with one equation, or at most a small system of two, solved by hand. A matrix is simply a rectangular grid of numbers, and once a problem is written in matrix form, an entire system, however many equations and unknowns it has, can be solved by following the same short list of mechanical steps every time. This closing set of notes introduces matrices as a way to organize numbers, shows how a system of equations becomes a single matrix equation, solves a system by reducing a matrix directly, and ends with the matrix inverse, a tool that turns solving a system into little more than a multiplication.</p>
+
+  <h2>Matrices as a way to organize numbers</h2>
+  <p>A row of numbers is a row vector, and a column of numbers is a column vector; a general matrix is simply a grid with both rows and columns. Suppose the prices, in dollars per unit, of three products A, B, and C are collected into a price vector P = [2 3 4], and the quantities purchased of each are collected into a column vector Q = [7, 5, 11]. Multiplying a row by a column means pairing up entries in order and adding the products: PQ = [(2·7) + (3·5) + (4·11)] = [73], the total cost of the purchase, 73 dollars, produced in a single matrix multiplication rather than three separate multiplications added up by hand afterward.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 230' role='img' aria-label='A row vector P of prices 2, 3, 4 multiplied by a column vector Q of quantities 7, 5, 11, pairing entries and summing to a total of 73' xmlns='http://www.w3.org/2000/svg'>
+  <rect x='40' y='60' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='60.0' y='84.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#1f6e5c'>2</text>
+  <rect x='86' y='60' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='106.0' y='84.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#1f6e5c'>3</text>
+  <rect x='132' y='60' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='152.0' y='84.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#1f6e5c'>4</text>
+  <text x='30' y='84.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='13' fill='#1c1c1c' font-weight='600'>P =</text>
+  <text x='40' y='48' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>price per unit ($)</text>
+  <rect x='260' y='20' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='280.0' y='44.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#b5651d'>7</text>
+  <rect x='260' y='64' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='280.0' y='88.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#b5651d'>5</text>
+  <rect x='260' y='108' width='40' height='38' fill='none' stroke='#1c1c1c' stroke-width='1.4' rx='3'/>
+  <text x='280.0' y='132.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='15' fill='#b5651d'>11</text>
+  <text x='250' y='44.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='13' fill='#1c1c1c' font-weight='600'>Q =</text>
+  <text x='260' y='8' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>quantity purchased</text>
+  <text x='400' y='84.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='18' fill='#1c1c1c'>=</text>
+  <text x='460' y='20' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='13' fill='#1c1c1c'>PQ = (2·7) + (3·5) + (4·11)</text>
+  <text x='460' y='46' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='13' fill='#1c1c1c'>= 14 + 15 + 44</text>
+  <rect x='455' y='60' width='64' height='40' fill='#1f6e5c' opacity='0.12' rx='4'/>
+  <rect x='458' y='63' width='58' height='34' fill='none' stroke='#1f6e5c' stroke-width='1.6' rx='3'/>
+  <text x='487' y='85' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='17' fill='#1f6e5c' font-weight='600'>73</text>
+  <text x='460' y='120' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>total cost, in dollars</text>
+</svg>
+<figcaption><strong>Figure.</strong> Multiplying the price vector P by the quantity vector Q pairs each product's price with the quantity purchased and sums the three products, giving a total cost of 73 dollars in a single matrix multiplication.</figcaption>
+</figure>
+
+
+  <h2>Writing a system of equations as AX = B</h2>
+  <p>The same multiplication rule turns a whole system of equations into a single matrix equation. For the system 2x<sub>1</sub> + 5x<sub>2</sub> = 4 and 8x<sub>1</sub> + 3x<sub>2</sub> = 7, collect the coefficients into a matrix A, the unknowns into a column X, and the right hand side into a column B:</p>
+  <blockquote>A = [[2, 5], [8, 3]],  X = [x<sub>1</sub>, x<sub>2</sub>],  B = [4, 7]</blockquote>
+  <p>and the system is exactly AX = B. Nothing about the equations has changed, only the notation; but that notation is what makes the row reduction and inverse methods below possible, since both work directly on the coefficient matrix A rather than on the equations as written.</p>
+
+  <h2>Solving a system by reducing a matrix</h2>
+  <p>A matrix can be transformed into an equivalent one, meaning one that represents the same solution, using three elementary row operations: interchanging two rows, multiplying a row by a nonzero number, and adding a multiple of one row to another. Applied patiently to an augmented matrix, a coefficient matrix with the right hand side attached as an extra column, these operations reduce the system to one where each unknown can simply be read off.</p>
+  <p>At an electronics sale, a customer spending a combined total of 3500 pays 80 percent of whatever is left after the refrigerator for the television, and 85 percent of whatever is left after the television for the refrigerator. Writing T and R for the two payable prices, the two conditions become T + 0.8R = 2800 and 0.85T + R = 2975. As an augmented matrix, [[1, 0.8 | 2800], [0.85, 1 | 2975]]; subtracting 0.85 times the first row from the second clears the first entry of the second row, leaving [0, 0.32 | 595], so R = 595/0.32 ≈ 1,859.38. Substituting back into the first equation gives T = 2800 − 0.8(1859.38) ≈ 1,312.50, both payable prices falling out of the same two row operations.</p>
+
+  <h2>The inverse of a matrix</h2>
+  <p>If A is a square matrix and some matrix C satisfies CA = I, the identity matrix, with 1s down its diagonal and 0s everywhere else, then C is called an inverse of A, written A<sup>−1</sup>, and A is said to be invertible. The inverse is found by exactly the row reduction technique above, applied to an augmented matrix [A | I] instead of [A | B]: whatever sequence of row operations reduces A to I on the left automatically turns I into A<sup>−1</sup> on the right.</p>
+  <p>For A = [[1, 1], [0, 2]], start from [A | I] and scale the second row by one half, then subtract the new second row from the first:</p>
+
+  <figure class="chart">
+<svg viewBox='0 0 748 190' role='img' aria-label='Three panels showing the Gauss Jordan reduction of the augmented matrix A given I to I given A inverse, for A equals the matrix with rows 1,1 and 0,2, ending in the inverse matrix with rows 1, negative 0.5 and 0, 0.5' xmlns='http://www.w3.org/2000/svg'>
+  <path d='M 38.0,70.0 L 30.0,70.0 L 30.0,138.0 L 38.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <path d='M 158.0,70.0 L 166.0,70.0 L 166.0,138.0 L 158.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <line x1='98.0' y1='66' x2='98.0' y2='142' stroke='#e7e5e0' stroke-width='1.3' stroke-dasharray='3,3'/>
+  <text x='47.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='81.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='115.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>1</text>
+  <text x='149.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0</text>
+  <text x='47.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>0</text>
+  <text x='81.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>2</text>
+  <text x='115.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0</text>
+  <text x='149.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>1</text>
+  <text x='98.0' y='54.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='12.5' fill='#1c1c1c' font-weight='600'>[A | I]</text>
+  <text x='98.0' y='160.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>start: A = [[1,1],[0,2]]</text>
+<path d='M 298.0,70.0 L 290.0,70.0 L 290.0,138.0 L 298.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <path d='M 418.0,70.0 L 426.0,70.0 L 426.0,138.0 L 418.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <line x1='358.0' y1='66' x2='358.0' y2='142' stroke='#e7e5e0' stroke-width='1.3' stroke-dasharray='3,3'/>
+  <text x='307.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='341.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='375.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>1</text>
+  <text x='409.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0</text>
+  <text x='307.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>0</text>
+  <text x='341.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='375.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0</text>
+  <text x='409.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0.5</text>
+  <text x='358.0' y='160.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>R2 → (1/2)R2</text>
+<path d='M 558.0,70.0 L 550.0,70.0 L 550.0,138.0 L 558.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <path d='M 678.0,70.0 L 686.0,70.0 L 686.0,138.0 L 678.0,138.0' fill='none' stroke='#1c1c1c' stroke-width='1.6'/>
+  <line x1='618.0' y1='66' x2='618.0' y2='142' stroke='#e7e5e0' stroke-width='1.3' stroke-dasharray='3,3'/>
+  <text x='567.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='601.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>0</text>
+  <text x='635.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>1</text>
+  <text x='669.0' y='92.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>−0.5</text>
+  <text x='567.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>0</text>
+  <text x='601.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#1f6e5c'>1</text>
+  <text x='635.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0</text>
+  <text x='669.0' y='126.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='14' fill='#b5651d'>0.5</text>
+  <text x='618.0' y='54.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='12.5' fill='#1c1c1c' font-weight='600'>[I | A⁻¹]</text>
+  <text x='618.0' y='160.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>R1 → R1 − R2</text>
+<line x1='176.0' y1='104.0' x2='272.0' y2='104.0' stroke='#5c5c5c' stroke-width='1.4'/>
+<path d='M 272.0,100.0 L 280.0,104.0 L 272.0,108.0' fill='#5c5c5c'/>
+<line x1='436.0' y1='104.0' x2='532.0' y2='104.0' stroke='#5c5c5c' stroke-width='1.4'/>
+<path d='M 532.0,100.0 L 540.0,104.0 L 532.0,108.0' fill='#5c5c5c'/>
+</svg>
+<figcaption><strong>Figure.</strong> Reducing [A | I] to [I | A⁻¹] two steps at a time. Once the left half becomes the identity matrix, the right half is the inverse, here A⁻¹ = [[1, −0.5], [0, 0.5]].</figcaption>
+</figure>
+
+  <h2>Solving AX = B with the inverse</h2>
+  <p>Once A<sup>−1</sup> is known, the system AX = B solves itself: multiplying both sides on the left by A<sup>−1</sup> gives A<sup>−1</sup>AX = A<sup>−1</sup>B, and since A<sup>−1</sup>A = I, this reduces to X = A<sup>−1</sup>B. For the system 3x + y = 10 and 5x + 2y = 17, A = [[3, 1], [5, 2]] has inverse A<sup>−1</sup> = [[2, −1], [−5, 3]] (found by the same row reduction method, or by the shortcut formula for a 2 by 2 matrix). Multiplying,</p>
+  <blockquote>X = A<sup>−1</sup>B = [[2, −1], [−5, 3]] [10, 17] = [(2·10) + (−1·17), (−5·10) + (3·17)] = [3, 1]</blockquote>
+  <p>so x = 3 and y = 1, a solution that checks immediately against both original equations: 3(3) + 1 = 10 and 5(3) + 2(1) = 17. The real advantage of this method shows up once a system grows past two equations: the inverse of a 3 by 3 or larger coefficient matrix is found by exactly the same row reduction procedure, and from there every system that shares that same coefficient matrix, however many different right hand sides B it is paired with, is solved by the same one multiplication.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 360' role='img' aria-label='Two lines, 3x plus y equals 10 and 5x plus 2y equals 17, crossing at the single point 3, 1, the solution found earlier by the matrix inverse' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='42' y1='248.2' x2='620' y2='248.2' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='119.1' y1='24' x2='119.1' y2='320' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='42.0' y1='245.2' x2='42.0' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='42.0' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−1</text>
+  <line x1='196.1' y1='245.2' x2='196.1' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='196.1' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1</text>
+  <line x1='273.2' y1='245.2' x2='273.2' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='273.2' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+  <line x1='350.3' y1='245.2' x2='350.3' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='350.3' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3</text>
+  <line x1='427.3' y1='245.2' x2='427.3' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='427.3' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+  <line x1='504.4' y1='245.2' x2='504.4' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='504.4' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5</text>
+  <line x1='581.5' y1='245.2' x2='581.5' y2='251.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='581.5' y='264.2' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='116.1' y1='320.0' x2='122.1' y2='320.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='324.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−4</text>
+  <line x1='116.1' y1='284.1' x2='122.1' y2='284.1' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='288.1' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−2</text>
+  <line x1='116.1' y1='212.4' x2='122.1' y2='212.4' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='216.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+  <line x1='116.1' y1='176.5' x2='122.1' y2='176.5' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='180.5' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+  <line x1='116.1' y1='140.6' x2='122.1' y2='140.6' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='144.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='116.1' y1='104.7' x2='122.1' y2='104.7' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='108.7' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>8</text>
+  <line x1='116.1' y1='68.8' x2='122.1' y2='68.8' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='112.1' y='72.8' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>10</text>
+  <path d='M 56.1,24.9 L 58.9,26.8 L 61.7,28.8 L 64.5,30.7 L 67.3,32.7 L 70.1,34.7 L 72.9,36.6 L 75.8,38.6 L 78.6,40.6 L 81.4,42.5 L 84.2,44.5 L 87.0,46.5 L 89.8,48.4 L 92.6,50.4 L 95.4,52.4 L 98.3,54.3 L 101.1,56.3 L 103.9,58.2 L 106.7,60.2 L 109.5,62.2 L 112.3,64.1 L 115.1,66.1 L 117.9,68.1 L 120.8,70.0 L 123.6,72.0 L 126.4,74.0 L 129.2,75.9 L 132.0,77.9 L 134.8,79.9 L 137.6,81.8 L 140.5,83.8 L 143.3,85.7 L 146.1,87.7 L 148.9,89.7 L 151.7,91.6 L 154.5,93.6 L 157.3,95.6 L 160.1,97.5 L 163.0,99.5 L 165.8,101.5 L 168.6,103.4 L 171.4,105.4 L 174.2,107.4 L 177.0,109.3 L 179.8,111.3 L 182.6,113.2 L 185.5,115.2 L 188.3,117.2 L 191.1,119.1 L 193.9,121.1 L 196.7,123.1 L 199.5,125.0 L 202.3,127.0 L 205.2,129.0 L 208.0,130.9 L 210.8,132.9 L 213.6,134.9 L 216.4,136.8 L 219.2,138.8 L 222.0,140.7 L 224.8,142.7 L 227.7,144.7 L 230.5,146.6 L 233.3,148.6 L 236.1,150.6 L 238.9,152.5 L 241.7,154.5 L 244.5,156.5 L 247.3,158.4 L 250.2,160.4 L 253.0,162.4 L 255.8,164.3 L 258.6,166.3 L 261.4,168.3 L 264.2,170.2 L 267.0,172.2 L 269.8,174.1 L 272.7,176.1 L 275.5,178.1 L 278.3,180.0 L 281.1,182.0 L 283.9,184.0 L 286.7,185.9 L 289.5,187.9 L 292.4,189.9 L 295.2,191.8 L 298.0,193.8 L 300.8,195.8 L 303.6,197.7 L 306.4,199.7 L 309.2,201.6 L 312.0,203.6 L 314.9,205.6 L 317.7,207.5 L 320.5,209.5 L 323.3,211.5 L 326.1,213.4 L 328.9,215.4 L 331.7,217.4 L 334.5,219.3 L 337.4,221.3 L 340.2,223.3 L 343.0,225.2 L 345.8,227.2 L 348.6,229.1 L 351.4,231.1 L 354.2,233.1 L 357.0,235.0 L 359.9,237.0 L 362.7,239.0 L 365.5,240.9 L 368.3,242.9 L 371.1,244.9 L 373.9,246.8 L 376.7,248.8 L 379.6,250.8 L 382.4,252.7 L 385.2,254.7 L 388.0,256.6 L 390.8,258.6 L 393.6,260.6 L 396.4,262.5 L 399.2,264.5 L 402.1,266.5 L 404.9,268.4 L 407.7,270.4 L 410.5,272.4 L 413.3,274.3 L 416.1,276.3 L 418.9,278.3 L 421.7,280.2 L 424.6,282.2 L 427.4,284.1 L 430.2,286.1 L 433.0,288.1 L 435.8,290.0 L 438.6,292.0 L 441.4,294.0 L 444.2,295.9 L 447.1,297.9 L 449.9,299.9 L 452.7,301.8 L 455.5,303.8 L 458.3,305.8 L 461.1,307.7 L 463.9,309.7 L 466.8,311.6 L 469.6,313.6 L 472.4,315.6 L 475.2,317.5 L 478.0,319.5' fill='none' stroke='#1f6e5c' stroke-width='2.4'/>
+  <path d='M 42.0,50.9 L 44.8,52.5 L 47.6,54.2 L 50.4,55.8 L 53.3,57.5 L 56.1,59.1 L 58.9,60.7 L 61.7,62.4 L 64.5,64.0 L 67.3,65.6 L 70.1,67.3 L 72.9,68.9 L 75.8,70.6 L 78.6,72.2 L 81.4,73.8 L 84.2,75.5 L 87.0,77.1 L 89.8,78.7 L 92.6,80.4 L 95.4,82.0 L 98.3,83.6 L 101.1,85.3 L 103.9,86.9 L 106.7,88.6 L 109.5,90.2 L 112.3,91.8 L 115.1,93.5 L 117.9,95.1 L 120.8,96.7 L 123.6,98.4 L 126.4,100.0 L 129.2,101.7 L 132.0,103.3 L 134.8,104.9 L 137.6,106.6 L 140.5,108.2 L 143.3,109.8 L 146.1,111.5 L 148.9,113.1 L 151.7,114.8 L 154.5,116.4 L 157.3,118.0 L 160.1,119.7 L 163.0,121.3 L 165.8,122.9 L 168.6,124.6 L 171.4,126.2 L 174.2,127.8 L 177.0,129.5 L 179.8,131.1 L 182.6,132.8 L 185.5,134.4 L 188.3,136.0 L 191.1,137.7 L 193.9,139.3 L 196.7,140.9 L 199.5,142.6 L 202.3,144.2 L 205.2,145.9 L 208.0,147.5 L 210.8,149.1 L 213.6,150.8 L 216.4,152.4 L 219.2,154.0 L 222.0,155.7 L 224.8,157.3 L 227.7,158.9 L 230.5,160.6 L 233.3,162.2 L 236.1,163.9 L 238.9,165.5 L 241.7,167.1 L 244.5,168.8 L 247.3,170.4 L 250.2,172.0 L 253.0,173.7 L 255.8,175.3 L 258.6,177.0 L 261.4,178.6 L 264.2,180.2 L 267.0,181.9 L 269.8,183.5 L 272.7,185.1 L 275.5,186.8 L 278.3,188.4 L 281.1,190.1 L 283.9,191.7 L 286.7,193.3 L 289.5,195.0 L 292.4,196.6 L 295.2,198.2 L 298.0,199.9 L 300.8,201.5 L 303.6,203.1 L 306.4,204.8 L 309.2,206.4 L 312.0,208.1 L 314.9,209.7 L 317.7,211.3 L 320.5,213.0 L 323.3,214.6 L 326.1,216.2 L 328.9,217.9 L 331.7,219.5 L 334.5,221.2 L 337.4,222.8 L 340.2,224.4 L 343.0,226.1 L 345.8,227.7 L 348.6,229.3 L 351.4,231.0 L 354.2,232.6 L 357.0,234.2 L 359.9,235.9 L 362.7,237.5 L 365.5,239.2 L 368.3,240.8 L 371.1,242.4 L 373.9,244.1 L 376.7,245.7 L 379.6,247.3 L 382.4,249.0 L 385.2,250.6 L 388.0,252.3 L 390.8,253.9 L 393.6,255.5 L 396.4,257.2 L 399.2,258.8 L 402.1,260.4 L 404.9,262.1 L 407.7,263.7 L 410.5,265.4 L 413.3,267.0 L 416.1,268.6 L 418.9,270.3 L 421.7,271.9 L 424.6,273.5 L 427.4,275.2 L 430.2,276.8 L 433.0,278.4 L 435.8,280.1 L 438.6,281.7 L 441.4,283.4 L 444.2,285.0 L 447.1,286.6 L 449.9,288.3 L 452.7,289.9 L 455.5,291.5 L 458.3,293.2 L 461.1,294.8 L 463.9,296.5 L 466.8,298.1 L 469.6,299.7 L 472.4,301.4 L 475.2,303.0 L 478.0,304.6 L 480.8,306.3 L 483.6,307.9 L 486.4,309.6 L 489.3,311.2 L 492.1,312.8 L 494.9,314.5 L 497.7,316.1 L 500.5,317.7 L 503.3,319.4' fill='none' stroke='#b5651d' stroke-width='2.4'/>
+  <circle cx='350.3' cy='230.3' r='4' fill='#1c1c1c'/>
+  <text x='365.7' y='224.9' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.5' font-weight='normal' fill='#1c1c1c'>(3, 1)</text>
+  <text x='373.4' y='72.4' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#1f6e5c'>3x + y = 10</text>
+  <text x='373.4' y='45.5' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#b5651d'>5x + 2y = 17</text>
+</svg>
+<figcaption><strong>Figure.</strong> The two lines 3x + y = 10 and 5x + 2y = 17 crossing at the single point (3, 1), the same solution just found algebraically using the inverse of the coefficient matrix.</figcaption>
+</figure>
+
+
+  <p>A matrix is, in the end, nothing more than a bookkeeping device: a way of keeping an entire system of numbers organized so that the same handful of row operations can be applied uniformly, rather than improvised fresh for every new system. That economy of effort, one method covering any number of equations, is exactly why matrix algebra closes out this course rather than opening it.</p>
+
+  <p class="source-note">Source: Ernest F. Haeussler Jr., Richard S. Paul, and Richard J. Wood, <em>Introductory Mathematical Analysis for Business, Economics, and the Life and Social Sciences</em>, 14th edition (Pearson Canada, 2019), chapter 6, covering matrices, systems of equations in matrix form, elementary row operations, and the inverse of a matrix.</p>
+    <div class="post-keywords"><span class="kw-label">Keywords:</span> <span class="kw">matrix algebra</span> <span class="kw">systems of equations in matrix form</span> <span class="kw">elementary row operations</span> <span class="kw">inverse of a matrix</span> <span class="kw">Gauss Jordan elimination</span> <span class="kw">matrix multiplication</span></div>
+  <nav class="post-pager">
+    <a class="pager-prev" href="annuities-and-the-mathematics-of-loans.html">&larr; Annuities and the Mathematics of Loans</a>
+    <a class="pager-all" href="math-for-social-sciences.html">All Math for Social Sciences Notes</a>
+  </nav>
+</article>
+
+<footer class="site-footer">
+  <p>deenasalih@outlook.com · Istanbul, Türkiye</p>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=4Ce_HSYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a> ·
+    <a href="https://x.com/DeenaSaleh9" target="_blank" rel="noopener">X</a> ·
+    <a href="https://www.linkedin.com/in/deena-saleh-ph-d-a97951b3/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://orcid.org/0000-0003-4628-4064" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</footer>
+
+</body>
+</html>

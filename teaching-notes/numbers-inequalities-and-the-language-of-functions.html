@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numbers, Inequalities, and the Language of Functions — Dr. Deena Saleh</title>
+<meta name="description" content="Covers the real number system, solving inequalities, absolute value as distance, the Cartesian plane, and functions, ending with the vertical line test.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">Deena Saleh</a>
+  <nav class="site-nav">
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="../teaching.html">Teaching</a>
+    <a class="active" href="../teaching-notes.html">Notes</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../cv.html">CV</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<article class="post">
+  <p class="post-date">Teaching Notes · Math for Social Sciences</p>
+
+  <details class="notes-toc">
+    <summary>Math for Social Sciences</summary>
+    <ul>
+      <li class="current">Numbers, Inequalities, and the Language of Functions</li>
+      <li><a href="functions-graphs-and-transformations.html">Functions, Graphs, and Transformations</a></li>
+      <li><a href="lines-limits-and-continuity.html">Lines, Limits, and Continuity</a></li>
+      <li><a href="parabolas-and-systems-of-equations.html">Parabolas and Systems of Equations</a></li>
+      <li><a href="the-derivative-and-what-it-measures.html">The Derivative and What It Measures</a></li>
+      <li><a href="optimization-finding-the-best-possible-outcome.html">Optimization: Finding the Best Possible Outcome</a></li>
+      <li><a href="exponential-and-logarithmic-functions-in-finance.html">Exponential and Logarithmic Functions in Finance</a></li>
+      <li><a href="functions-of-two-variables-and-partial-derivatives.html">Functions of Two Variables and Partial Derivatives</a></li>
+      <li><a href="sequences-series-and-the-mathematics-of-saving.html">Sequences, Series, and the Mathematics of Saving</a></li>
+      <li><a href="annuities-and-the-mathematics-of-loans.html">Annuities and the Mathematics of Loans</a></li>
+      <li><a href="an-introduction-to-matrix-algebra.html">An Introduction to Matrix Algebra</a></li>
+    </ul>
+  </details>
+
+  <h1>Numbers, Inequalities, and the Language of Functions</h1>
+
+  <p>Social sciences students often ask why a business degree still requires a full semester of calculus. Part of the answer is in this first set of notes. Before any of the usual tools, marginal cost, optimal production, present value, can be built, a few foundations have to be in place: what kind of numbers we are working with, how to solve and interpret an inequality, and what a function actually is. None of this is hard on its own, but all of it gets used quietly in every example that follows later in the course.</p>
+
+  <h2>The numbers we actually use</h2>
+  <p>Counting starts with the natural numbers, 0, 1, 2, 3, and so on. They are enough to count units sold or days worked, but not enough to describe a loss. Consider two traders. One gains 200 Egyptian pounds on Saturday and loses 50 on Sunday, for a net income of 200 − 50 = 150, still a natural number. The other gains 100 on Saturday and loses 200 on Sunday, for a net income of 100 − 200 = −100, a negative number that falls outside the natural numbers altogether. Negative numbers together with the natural numbers form the integers.</p>
+  <p>Integers still are not enough. If four pencils cost 3 units of currency, the price of one pencil solves the equation 4x = 3, giving x = 3/4, a number that is a ratio of two integers. Numbers of this form, a/b with a and b integers and b not equal to zero, are called rational numbers. Not every number can be written this way. Numbers such as the square root of 2, or π, or e (the constant that shows up constantly later in this course, roughly 2.71828), cannot be expressed as a ratio of integers at all, and are called irrational. Put the rational and irrational numbers together and you get the real numbers, the full number line that calculus is built on, with every real number having a decimal representation, either terminating (2/5 = 0.4) or repeating forever without terminating (1/3 = 0.333...).</p>
+
+  <h2>Solving and interpreting inequalities</h2>
+  <p>Calculus problems rarely ask for a single value of x. More often they ask for a whole range: which production levels keep cost under a ceiling, which sales levels actually turn a profit. That makes inequalities, not just equations, one of the earliest tools worth being comfortable with. The rules are close to the rules for equations, with one exception worth remembering: multiplying or dividing both sides of an inequality by a negative number flips its direction.</p>
+  <p>Two short business examples make the mechanics concrete. A company pays 500 in fixed overhead per day, plus 2.5 per unit produced, so the daily cost is C = 2.5x + 500. During one month the daily cost ranged from a low of 1200 to a high of 1325. Writing that as a compound inequality and solving it:</p>
+  <blockquote>1200 ≤ 2.5x + 500 ≤ 1325<br>700 ≤ 2.5x ≤ 825<br>280 ≤ x ≤ 330</blockquote>
+  <p>So daily production that month ranged from 280 to 330 units, a range read straight off the solved inequality.</p>
+  <p>A second example asks when a product actually turns a profit. Revenue from selling x units is R = 30x, and the cost of producing x units is C = 23x + 300. A profit requires revenue to exceed cost, so R &gt; C:</p>
+  <blockquote>30x &gt; 23x + 300<br>7x &gt; 300<br>x &gt; 42.857...</blockquote>
+  <p>Since x counts whole units, the product returns a profit once 43 or more units are sold. Two short inequalities, and already a production target and a breakeven point fall out of them directly.</p>
+
+  <h2>Absolute value as a measure of distance</h2>
+  <p>Absolute value turns up constantly in later sections, and it is easiest to think of as distance rather than as a rule about signs. By definition |x| equals x when x is at least zero, and equals −x when x is negative, which guarantees |x| is never negative. The distance between two points a and b on the real line is then simply |a − b|. The distance between −2 and 5, for instance, is | −2 − 5 | = | −7 | = 7.</p>
+  <p>This distance reading is what makes absolute value inequalities solvable almost by inspection. The statement |x| ≤ d means x lies within d units of zero, so −d ≤ x ≤ d, and |x| ≥ d means x lies at least d units from zero, so x ≤ −d or x ≥ d. A production example shows why a business would care: a refinery's estimated daily output x, measured in barrels, satisfies |x − 200,000| ≤ 25,000. Reading this as distance, output stays within 25,000 barrels of the 200,000 baseline, which solves out to:</p>
+  <blockquote>175,000 ≤ x ≤ 225,000</blockquote>
+  <p>giving a low production level of 175,000 barrels and a high of 225,000, directly from one inequality written in terms of a distance from a target.</p>
+
+  <h2>The Cartesian plane and the idea of a function</h2>
+  <p>Most of the quantities a manager actually tracks, cost against output, revenue against price, depend on more than one number at once, which is why the plane, not just the line, becomes the working space for the rest of the course. Every point in the plane is an ordered pair (x, y), and the distance between two points (a, b) and (c, d) follows directly from the Pythagorean theorem:</p>
+  <blockquote>distance = √[(c − a)² + (d − b)²]</blockquote>
+  <p>For the points (3, −1) and (2, 4), that distance works out to √[(2−3)² + (4−(−1))²] = √(1 + 25) = √26.</p>
+  <p>A function is then a precise kind of relationship between two such variables: a rule that assigns to each input x in some set exactly one output y, written y = f(x). The rule f(x) = 3x is a function, since every x produces exactly one output. The rule f(x) = ±√x is not, since it hands back two different values, positive and negative, for the same input. Polynomials, expressions such as f(x) = 4x³ − 2x + 3, are functions of this kind, and so are rational functions, ratios of two polynomials such as f(x) = (x − 1)/(x² − 9), with one restriction: a rational function is undefined wherever its denominator equals zero. The set of inputs for which a function is actually defined is called its domain, and for a rational function the domain is every real number except the zeros of the denominator. For f(x) = (x − 1)/(x² − 9), the denominator is zero at x = 3 and x = −3, so the domain is every real number other than those two. The set of values the function actually outputs is called its range; the function f(x) = x² − 1, for example, never produces a value below −1, so its range is the interval from −1 upward.</p>
+
+  <h2>Is it actually a function? The vertical line test</h2>
+  <p>Not every equation relating x and y is a function, even though every function defines such a relation. The circle x² + y² = 25 relates x and y perfectly well, but it is not a function, because a single value of x (say x = 1) corresponds to two different values of y, one above the x axis and one below. The quickest way to check is graphical: draw the relation, then check whether any vertical line crosses it more than once. If every vertical line meets the graph in at most one point, the relation is a function. The parabola y = x² − 4 passes this test everywhere; the circle fails it everywhere except at its two extreme points.</p>
+
+  <figure class="chart">
+<svg viewBox='0 0 660 330' role='img' aria-label='Two graphs side by side showing the vertical line test: a parabola crossed once by a vertical test line, which is a function, and a circle crossed twice, which is not a function' xmlns='http://www.w3.org/2000/svg'>
+  <g transform='translate(0,0)'>
+    <line x1='34' y1='226.4' x2='304' y2='226.4' stroke='#e7e5e0' stroke-width='1.5'/>
+    <line x1='169.0' y1='18' x2='169.0' y2='286' stroke='#e7e5e0' stroke-width='1.5'/>
+    <line x1='61.0' y1='223.4' x2='61.0' y2='229.4' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='61.0' y='242.4' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−4</text>
+    <line x1='115.0' y1='223.4' x2='115.0' y2='229.4' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='115.0' y='242.4' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−2</text>
+    <line x1='223.0' y1='223.4' x2='223.0' y2='229.4' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='223.0' y='242.4' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+    <line x1='277.0' y1='223.4' x2='277.0' y2='229.4' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='277.0' y='242.4' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+    <line x1='166.0' y1='226.4' x2='172.0' y2='226.4' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='162.0' y='230.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>0</text>
+    <line x1='166.0' y1='127.2' x2='172.0' y2='127.2' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='162.0' y='131.2' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>10</text>
+    <line x1='166.0' y1='27.9' x2='172.0' y2='27.9' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='162.0' y='31.9' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>20</text>
+    <path d='M 34.0,18.0 L 35.3,22.9 L 36.7,27.8 L 38.1,32.7 L 39.4,37.5 L 40.8,42.2 L 42.1,46.9 L 43.4,51.5 L 44.8,56.1 L 46.2,60.7 L 47.5,65.1 L 48.8,69.6 L 50.2,74.0 L 51.6,78.3 L 52.9,82.6 L 54.2,86.9 L 55.6,91.1 L 56.9,95.2 L 58.3,99.3 L 59.7,103.3 L 61.0,107.3 L 62.3,111.3 L 63.7,115.2 L 65.0,119.0 L 66.4,122.8 L 67.8,126.6 L 69.1,130.3 L 70.5,133.9 L 71.8,137.5 L 73.2,141.1 L 74.5,144.6 L 75.8,148.0 L 77.2,151.4 L 78.5,154.8 L 79.9,158.1 L 81.2,161.3 L 82.6,164.5 L 84.0,167.7 L 85.3,170.8 L 86.7,173.8 L 88.0,176.8 L 89.3,179.8 L 90.7,182.7 L 92.0,185.5 L 93.4,188.3 L 94.8,191.1 L 96.1,193.8 L 97.5,196.4 L 98.8,199.0 L 100.2,201.6 L 101.5,204.1 L 102.8,206.6 L 104.2,209.0 L 105.5,211.3 L 106.9,213.6 L 108.2,215.9 L 109.6,218.1 L 111.0,220.3 L 112.3,222.4 L 113.7,224.4 L 115.0,226.4 L 116.3,228.4 L 117.7,230.3 L 119.0,232.2 L 120.4,234.0 L 121.8,235.8 L 123.1,237.5 L 124.5,239.1 L 125.8,240.7 L 127.2,242.3 L 128.5,243.8 L 129.8,245.3 L 131.2,246.7 L 132.6,248.1 L 133.9,249.4 L 135.2,250.6 L 136.6,251.9 L 137.9,253.0 L 139.3,254.1 L 140.7,255.2 L 142.0,256.2 L 143.3,257.2 L 144.7,258.1 L 146.1,259.0 L 147.4,259.8 L 148.8,260.6 L 150.1,261.3 L 151.4,262.0 L 152.8,262.6 L 154.2,263.1 L 155.5,263.7 L 156.8,264.1 L 158.2,264.6 L 159.6,264.9 L 160.9,265.3 L 162.2,265.5 L 163.6,265.8 L 164.9,265.9 L 166.3,266.0 L 167.7,266.1 L 169.0,266.1 L 170.3,266.1 L 171.7,266.0 L 173.1,265.9 L 174.4,265.8 L 175.8,265.5 L 177.1,265.3 L 178.4,264.9 L 179.8,264.6 L 181.2,264.1 L 182.5,263.7 L 183.8,263.1 L 185.2,262.6 L 186.6,262.0 L 187.9,261.3 L 189.2,260.6 L 190.6,259.8 L 191.9,259.0 L 193.3,258.1 L 194.7,257.2 L 196.0,256.2 L 197.3,255.2 L 198.7,254.1 L 200.1,253.0 L 201.4,251.9 L 202.8,250.6 L 204.1,249.4 L 205.4,248.1 L 206.8,246.7 L 208.2,245.3 L 209.5,243.8 L 210.8,242.3 L 212.2,240.7 L 213.6,239.1 L 214.9,237.5 L 216.2,235.8 L 217.6,234.0 L 218.9,232.2 L 220.3,230.3 L 221.7,228.4 L 223.0,226.4 L 224.3,224.4 L 225.7,222.4 L 227.1,220.3 L 228.4,218.1 L 229.8,215.9 L 231.1,213.6 L 232.4,211.3 L 233.8,209.0 L 235.2,206.6 L 236.5,204.1 L 237.8,201.6 L 239.2,199.0 L 240.6,196.4 L 241.9,193.8 L 243.2,191.1 L 244.6,188.3 L 245.9,185.5 L 247.3,182.7 L 248.7,179.8 L 250.0,176.8 L 251.4,173.8 L 252.7,170.8 L 254.1,167.7 L 255.4,164.5 L 256.8,161.3 L 258.1,158.1 L 259.4,154.8 L 260.8,151.4 L 262.1,148.0 L 263.5,144.6 L 264.9,141.1 L 266.2,137.5 L 267.6,133.9 L 268.9,130.3 L 270.2,126.6 L 271.6,122.8 L 272.9,119.0 L 274.3,115.2 L 275.6,111.3 L 277.0,107.3 L 278.4,103.3 L 279.7,99.3 L 281.1,95.2 L 282.4,91.1 L 283.8,86.9 L 285.1,82.6 L 286.4,78.3 L 287.8,74.0 L 289.1,69.6 L 290.5,65.1 L 291.9,60.7 L 293.2,56.1 L 294.6,51.5 L 295.9,46.9 L 297.2,42.2 L 298.6,37.5 L 299.9,32.7 L 301.3,27.8 L 302.6,22.9 L 304.0,18.0' fill='none' stroke='#1f6e5c' stroke-width='2.5'/>
+    <line x1='223.0' y1='286.0' x2='223.0' y2='18.0' stroke='#b5651d' stroke-width='1.8' stroke-dasharray='5,4'/>
+    <circle cx='223.0' cy='226.4' r='4.5' fill='#b5651d'/>
+    <text x='223.0' y='12.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#b5651d'>test line</text>
+    <text x='139.0' y='276.0' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.5' font-weight='normal' fill='#1c1c1c'>f(x) = x² − 4</text>
+    <text x='169.0' y='302.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#5c5c5c'>one crossing: IS a function</text>
+  </g>
+  <g transform='translate(340,0)'>
+    <line x1='28' y1='152.0' x2='304' y2='152.0' stroke='#e7e5e0' stroke-width='1.5'/>
+    <line x1='166.0' y1='18' x2='166.0' y2='286' stroke='#e7e5e0' stroke-width='1.5'/>
+    <line x1='67.4' y1='149.0' x2='67.4' y2='155.0' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='67.4' y='168.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−5</text>
+    <line x1='264.6' y1='149.0' x2='264.6' y2='155.0' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='264.6' y='168.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5</text>
+    <line x1='163.0' y1='247.7' x2='169.0' y2='247.7' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='159.0' y='251.7' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>−5</text>
+    <line x1='163.0' y1='56.3' x2='169.0' y2='56.3' stroke='#5c5c5c' stroke-width='1'/>
+    <text x='159.0' y='60.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5</text>
+    <path d='M 68.0,141.5 L 68.7,136.6 L 69.4,133.0 L 70.1,129.9 L 70.8,127.3 L 71.5,124.9 L 72.2,122.7 L 72.9,120.7 L 73.5,118.8 L 74.2,117.1 L 74.9,115.4 L 75.6,113.8 L 76.3,112.3 L 77.0,110.9 L 77.7,109.5 L 78.4,108.2 L 79.1,106.9 L 79.8,105.7 L 80.4,104.5 L 81.1,103.3 L 81.8,102.2 L 82.5,101.1 L 83.2,100.1 L 83.9,99.0 L 84.6,98.0 L 85.3,97.1 L 86.0,96.1 L 86.6,95.2 L 87.3,94.3 L 88.0,93.4 L 88.7,92.6 L 89.4,91.7 L 90.1,90.9 L 90.8,90.1 L 91.5,89.3 L 92.2,88.6 L 92.9,87.8 L 93.6,87.1 L 94.2,86.4 L 94.9,85.7 L 95.6,85.0 L 96.3,84.3 L 97.0,83.6 L 97.7,83.0 L 98.4,82.4 L 99.1,81.7 L 99.8,81.1 L 100.5,80.5 L 101.1,79.9 L 101.8,79.3 L 102.5,78.8 L 103.2,78.2 L 103.9,77.7 L 104.6,77.1 L 105.3,76.6 L 106.0,76.1 L 106.7,75.6 L 107.4,75.1 L 108.0,74.6 L 108.7,74.1 L 109.4,73.6 L 110.1,73.2 L 110.8,72.7 L 111.5,72.3 L 112.2,71.8 L 112.9,71.4 L 113.6,71.0 L 114.2,70.5 L 114.9,70.1 L 115.6,69.7 L 116.3,69.3 L 117.0,68.9 L 117.7,68.6 L 118.4,68.2 L 119.1,67.8 L 119.8,67.5 L 120.5,67.1 L 121.1,66.8 L 121.8,66.4 L 122.5,66.1 L 123.2,65.8 L 123.9,65.5 L 124.6,65.1 L 125.3,64.8 L 126.0,64.5 L 126.7,64.2 L 127.4,63.9 L 128.1,63.7 L 128.7,63.4 L 129.4,63.1 L 130.1,62.9 L 130.8,62.6 L 131.5,62.3 L 132.2,62.1 L 132.9,61.9 L 133.6,61.6 L 134.3,61.4 L 134.9,61.2 L 135.6,60.9 L 136.3,60.7 L 137.0,60.5 L 137.7,60.3 L 138.4,60.1 L 139.1,59.9 L 139.8,59.7 L 140.5,59.6 L 141.2,59.4 L 141.9,59.2 L 142.5,59.0 L 143.2,58.9 L 143.9,58.7 L 144.6,58.6 L 145.3,58.4 L 146.0,58.3 L 146.7,58.1 L 147.4,58.0 L 148.1,57.9 L 148.8,57.8 L 149.4,57.6 L 150.1,57.5 L 150.8,57.4 L 151.5,57.3 L 152.2,57.2 L 152.9,57.1 L 153.6,57.0 L 154.3,57.0 L 155.0,56.9 L 155.6,56.8 L 156.3,56.7 L 157.0,56.7 L 157.7,56.6 L 158.4,56.6 L 159.1,56.5 L 159.8,56.5 L 160.5,56.4 L 161.2,56.4 L 161.9,56.4 L 162.5,56.3 L 163.2,56.3 L 163.9,56.3 L 164.6,56.3 L 165.3,56.3 L 166.0,56.3 L 166.7,56.3 L 167.4,56.3 L 168.1,56.3 L 168.8,56.3 L 169.4,56.3 L 170.1,56.4 L 170.8,56.4 L 171.5,56.4 L 172.2,56.5 L 172.9,56.5 L 173.6,56.6 L 174.3,56.6 L 175.0,56.7 L 175.7,56.7 L 176.3,56.8 L 177.0,56.9 L 177.7,57.0 L 178.4,57.0 L 179.1,57.1 L 179.8,57.2 L 180.5,57.3 L 181.2,57.4 L 181.9,57.5 L 182.6,57.6 L 183.2,57.8 L 183.9,57.9 L 184.6,58.0 L 185.3,58.1 L 186.0,58.3 L 186.7,58.4 L 187.4,58.6 L 188.1,58.7 L 188.8,58.9 L 189.5,59.0 L 190.2,59.2 L 190.8,59.4 L 191.5,59.6 L 192.2,59.7 L 192.9,59.9 L 193.6,60.1 L 194.3,60.3 L 195.0,60.5 L 195.7,60.7 L 196.4,60.9 L 197.0,61.2 L 197.7,61.4 L 198.4,61.6 L 199.1,61.9 L 199.8,62.1 L 200.5,62.3 L 201.2,62.6 L 201.9,62.9 L 202.6,63.1 L 203.3,63.4 L 204.0,63.7 L 204.6,63.9 L 205.3,64.2 L 206.0,64.5 L 206.7,64.8 L 207.4,65.1 L 208.1,65.5 L 208.8,65.8 L 209.5,66.1 L 210.2,66.4 L 210.8,66.8 L 211.5,67.1 L 212.2,67.5 L 212.9,67.8 L 213.6,68.2 L 214.3,68.6 L 215.0,68.9 L 215.7,69.3 L 216.4,69.7 L 217.1,70.1 L 217.8,70.5 L 218.4,71.0 L 219.1,71.4 L 219.8,71.8 L 220.5,72.3 L 221.2,72.7 L 221.9,73.2 L 222.6,73.6 L 223.3,74.1 L 224.0,74.6 L 224.7,75.1 L 225.3,75.6 L 226.0,76.1 L 226.7,76.6 L 227.4,77.1 L 228.1,77.7 L 228.8,78.2 L 229.5,78.8 L 230.2,79.3 L 230.9,79.9 L 231.5,80.5 L 232.2,81.1 L 232.9,81.7 L 233.6,82.4 L 234.3,83.0 L 235.0,83.6 L 235.7,84.3 L 236.4,85.0 L 237.1,85.7 L 237.8,86.4 L 238.5,87.1 L 239.1,87.8 L 239.8,88.6 L 240.5,89.3 L 241.2,90.1 L 241.9,90.9 L 242.6,91.7 L 243.3,92.6 L 244.0,93.4 L 244.7,94.3 L 245.3,95.2 L 246.0,96.1 L 246.7,97.1 L 247.4,98.0 L 248.1,99.0 L 248.8,100.1 L 249.5,101.1 L 250.2,102.2 L 250.9,103.3 L 251.6,104.5 L 252.2,105.7 L 252.9,106.9 L 253.6,108.2 L 254.3,109.5 L 255.0,110.9 L 255.7,112.3 L 256.4,113.8 L 257.1,115.4 L 257.8,117.1 L 258.5,118.8 L 259.1,120.7 L 259.8,122.7 L 260.5,124.9 L 261.2,127.3 L 261.9,129.9 L 262.6,133.0 L 263.3,136.6 L 264.0,141.5' fill='none' stroke='#1f6e5c' stroke-width='2.5'/>
+    <path d='M 68.0,162.5 L 68.7,167.4 L 69.4,171.0 L 70.1,174.1 L 70.8,176.7 L 71.5,179.1 L 72.2,181.3 L 72.9,183.3 L 73.5,185.2 L 74.2,186.9 L 74.9,188.6 L 75.6,190.2 L 76.3,191.7 L 77.0,193.1 L 77.7,194.5 L 78.4,195.8 L 79.1,197.1 L 79.8,198.3 L 80.4,199.5 L 81.1,200.7 L 81.8,201.8 L 82.5,202.9 L 83.2,203.9 L 83.9,205.0 L 84.6,206.0 L 85.3,206.9 L 86.0,207.9 L 86.6,208.8 L 87.3,209.7 L 88.0,210.6 L 88.7,211.4 L 89.4,212.3 L 90.1,213.1 L 90.8,213.9 L 91.5,214.7 L 92.2,215.4 L 92.9,216.2 L 93.6,216.9 L 94.2,217.6 L 94.9,218.3 L 95.6,219.0 L 96.3,219.7 L 97.0,220.4 L 97.7,221.0 L 98.4,221.6 L 99.1,222.3 L 99.8,222.9 L 100.5,223.5 L 101.1,224.1 L 101.8,224.7 L 102.5,225.2 L 103.2,225.8 L 103.9,226.3 L 104.6,226.9 L 105.3,227.4 L 106.0,227.9 L 106.7,228.4 L 107.4,228.9 L 108.0,229.4 L 108.7,229.9 L 109.4,230.4 L 110.1,230.8 L 110.8,231.3 L 111.5,231.7 L 112.2,232.2 L 112.9,232.6 L 113.6,233.0 L 114.2,233.5 L 114.9,233.9 L 115.6,234.3 L 116.3,234.7 L 117.0,235.1 L 117.7,235.4 L 118.4,235.8 L 119.1,236.2 L 119.8,236.5 L 120.5,236.9 L 121.1,237.2 L 121.8,237.6 L 122.5,237.9 L 123.2,238.2 L 123.9,238.5 L 124.6,238.9 L 125.3,239.2 L 126.0,239.5 L 126.7,239.8 L 127.4,240.1 L 128.1,240.3 L 128.7,240.6 L 129.4,240.9 L 130.1,241.1 L 130.8,241.4 L 131.5,241.7 L 132.2,241.9 L 132.9,242.1 L 133.6,242.4 L 134.3,242.6 L 134.9,242.8 L 135.6,243.1 L 136.3,243.3 L 137.0,243.5 L 137.7,243.7 L 138.4,243.9 L 139.1,244.1 L 139.8,244.3 L 140.5,244.4 L 141.2,244.6 L 141.9,244.8 L 142.5,245.0 L 143.2,245.1 L 143.9,245.3 L 144.6,245.4 L 145.3,245.6 L 146.0,245.7 L 146.7,245.9 L 147.4,246.0 L 148.1,246.1 L 148.8,246.2 L 149.4,246.4 L 150.1,246.5 L 150.8,246.6 L 151.5,246.7 L 152.2,246.8 L 152.9,246.9 L 153.6,247.0 L 154.3,247.0 L 155.0,247.1 L 155.6,247.2 L 156.3,247.3 L 157.0,247.3 L 157.7,247.4 L 158.4,247.4 L 159.1,247.5 L 159.8,247.5 L 160.5,247.6 L 161.2,247.6 L 161.9,247.6 L 162.5,247.7 L 163.2,247.7 L 163.9,247.7 L 164.6,247.7 L 165.3,247.7 L 166.0,247.7 L 166.7,247.7 L 167.4,247.7 L 168.1,247.7 L 168.8,247.7 L 169.4,247.7 L 170.1,247.6 L 170.8,247.6 L 171.5,247.6 L 172.2,247.5 L 172.9,247.5 L 173.6,247.4 L 174.3,247.4 L 175.0,247.3 L 175.7,247.3 L 176.3,247.2 L 177.0,247.1 L 177.7,247.0 L 178.4,247.0 L 179.1,246.9 L 179.8,246.8 L 180.5,246.7 L 181.2,246.6 L 181.9,246.5 L 182.6,246.4 L 183.2,246.2 L 183.9,246.1 L 184.6,246.0 L 185.3,245.9 L 186.0,245.7 L 186.7,245.6 L 187.4,245.4 L 188.1,245.3 L 188.8,245.1 L 189.5,245.0 L 190.2,244.8 L 190.8,244.6 L 191.5,244.4 L 192.2,244.3 L 192.9,244.1 L 193.6,243.9 L 194.3,243.7 L 195.0,243.5 L 195.7,243.3 L 196.4,243.1 L 197.0,242.8 L 197.7,242.6 L 198.4,242.4 L 199.1,242.1 L 199.8,241.9 L 200.5,241.7 L 201.2,241.4 L 201.9,241.1 L 202.6,240.9 L 203.3,240.6 L 204.0,240.3 L 204.6,240.1 L 205.3,239.8 L 206.0,239.5 L 206.7,239.2 L 207.4,238.9 L 208.1,238.5 L 208.8,238.2 L 209.5,237.9 L 210.2,237.6 L 210.8,237.2 L 211.5,236.9 L 212.2,236.5 L 212.9,236.2 L 213.6,235.8 L 214.3,235.4 L 215.0,235.1 L 215.7,234.7 L 216.4,234.3 L 217.1,233.9 L 217.8,233.5 L 218.4,233.0 L 219.1,232.6 L 219.8,232.2 L 220.5,231.7 L 221.2,231.3 L 221.9,230.8 L 222.6,230.4 L 223.3,229.9 L 224.0,229.4 L 224.7,228.9 L 225.3,228.4 L 226.0,227.9 L 226.7,227.4 L 227.4,226.9 L 228.1,226.3 L 228.8,225.8 L 229.5,225.2 L 230.2,224.7 L 230.9,224.1 L 231.5,223.5 L 232.2,222.9 L 232.9,222.3 L 233.6,221.6 L 234.3,221.0 L 235.0,220.4 L 235.7,219.7 L 236.4,219.0 L 237.1,218.3 L 237.8,217.6 L 238.5,216.9 L 239.1,216.2 L 239.8,215.4 L 240.5,214.7 L 241.2,213.9 L 241.9,213.1 L 242.6,212.3 L 243.3,211.4 L 244.0,210.6 L 244.7,209.7 L 245.3,208.8 L 246.0,207.9 L 246.7,206.9 L 247.4,206.0 L 248.1,205.0 L 248.8,203.9 L 249.5,202.9 L 250.2,201.8 L 250.9,200.7 L 251.6,199.5 L 252.2,198.3 L 252.9,197.1 L 253.6,195.8 L 254.3,194.5 L 255.0,193.1 L 255.7,191.7 L 256.4,190.2 L 257.1,188.6 L 257.8,186.9 L 258.5,185.2 L 259.1,183.3 L 259.8,181.3 L 260.5,179.1 L 261.2,176.7 L 261.9,174.1 L 262.6,171.0 L 263.3,167.4 L 264.0,162.5' fill='none' stroke='#1f6e5c' stroke-width='2.5'/>
+    <line x1='225.1' y1='286.0' x2='225.1' y2='18.0' stroke='#b5651d' stroke-width='1.8' stroke-dasharray='5,4'/>
+    <circle cx='225.1' cy='75.4' r='4.5' fill='#b5651d'/>
+    <circle cx='225.1' cy='228.6' r='4.5' fill='#b5651d'/>
+    <text x='225.1' y='12.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#b5651d'>test line</text>
+    <text x='166.0' y='276.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='12.5' font-weight='normal' fill='#1c1c1c'>x² + y² = 25</text>
+    <text x='166.0' y='302.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#5c5c5c'>two crossings: NOT a function</text>
+  </g>
+</svg>
+<figcaption><strong>Figure.</strong> A vertical test line crosses the parabola once, so it is the graph of a function. The same test line crosses the circle twice, so the circle is not.</figcaption>
+</figure>
+
+
+  <p>None of this is calculus yet, but it is the alphabet the rest of the course is written in. Every later idea, the slope of a line read as a marginal cost, the limit of a function, the derivative itself, is stated in exactly this vocabulary: numbers, inequalities, domains, and the test for whether a relationship even counts as a function in the first place.</p>
+
+  <p class="source-note">Source: lecture notes for an introductory calculus course for the social sciences, covering numbers and the real number system, solving inequalities, absolute value and distance, the Cartesian plane, and functions, their domain, range, and graphs.</p>
+    <div class="post-keywords"><span class="kw-label">Keywords:</span> <span class="kw">real number system</span> <span class="kw">solving inequalities</span> <span class="kw">absolute value and distance</span> <span class="kw">Cartesian plane</span> <span class="kw">domain and range</span> <span class="kw">vertical line test</span> <span class="kw">rational and irrational numbers</span></div>
+  <nav class="post-pager">
+    <a class="pager-all" href="math-for-social-sciences.html">All Math for Social Sciences Notes</a>
+    <a class="pager-next" href="functions-graphs-and-transformations.html">Functions, Graphs, and Transformations &rarr;</a>
+  </nav>
+</article>
+
+<footer class="site-footer">
+  <p>deenasalih@outlook.com · Istanbul, Türkiye</p>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=4Ce_HSYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a> ·
+    <a href="https://x.com/DeenaSaleh9" target="_blank" rel="noopener">X</a> ·
+    <a href="https://www.linkedin.com/in/deena-saleh-ph-d-a97951b3/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://orcid.org/0000-0003-4628-4064" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</footer>
+
+</body>
+</html>

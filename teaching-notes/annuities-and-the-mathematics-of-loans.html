@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annuities and the Mathematics of Loans — Dr. Deena Saleh</title>
+<meta name="description" content="Extends compound interest to a stream of equal payments, covering the future and present value of an ordinary annuity and an annuity due, loans, and sinking funds.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">Deena Saleh</a>
+  <nav class="site-nav">
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="../teaching.html">Teaching</a>
+    <a class="active" href="../teaching-notes.html">Notes</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../cv.html">CV</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<article class="post">
+  <p class="post-date">Teaching Notes · Math for Social Sciences</p>
+
+  <details class="notes-toc">
+    <summary>Math for Social Sciences</summary>
+    <ul>
+      <li><a href="numbers-inequalities-and-the-language-of-functions.html">Numbers, Inequalities, and the Language of Functions</a></li>
+      <li><a href="functions-graphs-and-transformations.html">Functions, Graphs, and Transformations</a></li>
+      <li><a href="lines-limits-and-continuity.html">Lines, Limits, and Continuity</a></li>
+      <li><a href="parabolas-and-systems-of-equations.html">Parabolas and Systems of Equations</a></li>
+      <li><a href="the-derivative-and-what-it-measures.html">The Derivative and What It Measures</a></li>
+      <li><a href="optimization-finding-the-best-possible-outcome.html">Optimization: Finding the Best Possible Outcome</a></li>
+      <li><a href="exponential-and-logarithmic-functions-in-finance.html">Exponential and Logarithmic Functions in Finance</a></li>
+      <li><a href="functions-of-two-variables-and-partial-derivatives.html">Functions of Two Variables and Partial Derivatives</a></li>
+      <li><a href="sequences-series-and-the-mathematics-of-saving.html">Sequences, Series, and the Mathematics of Saving</a></li>
+      <li class="current">Annuities and the Mathematics of Loans</li>
+      <li><a href="an-introduction-to-matrix-algebra.html">An Introduction to Matrix Algebra</a></li>
+    </ul>
+  </details>
+
+  <h1>Annuities and the Mathematics of Loans</h1>
+
+  <p>Two earlier sets of notes dealt with money separately: one built the compound interest formula for a single deposit growing on its own, and another summed a geometric series to value a stream of monthly savings one deposit at a time. An annuity is what results from naming that second idea properly and giving it its own formula, so that a stream of equal payments can be valued in one step instead of being summed term by term. This set of notes gives the future and present value formulas for an annuity, covers the one change needed when a payment falls at the start of a period rather than the end, and finishes by running the same formulas backward to price a loan and a sinking fund.</p>
+
+  <h2>An annuity is a stream of equal payments</h2>
+  <p>An annuity is any finite sequence of equal payments made at fixed periods of time over a stated term, called the payment period. Two timings are both common enough to need their own name. In an ordinary annuity, each payment falls at the end of its period, a salary paid at the end of the month, or a bond coupon paid at the end of a year. In an annuity due, each payment falls at the start of its period instead, a rent payment due the first of the month being the clearest everyday example. The distinction matters because a payment made at the start of a period earns interest for one extra period compared with the same payment made at the end, which is the only difference the formulas below have to account for.</p>
+
+  <h2>Future value of an ordinary annuity</h2>
+  <p>The future value of an ordinary annuity, the balance immediately after the final payment, is given by FV = C × [(1 + i)<sup>n</sup> − 1]/i, where C is the payment amount, i is the interest rate per period, and n is the number of payments. Consider an annuity of 50 at the end of every three months for three years, at 6 percent compounded quarterly. Here i = 0.06/4 = 0.015 per quarter and n = 3 × 4 = 12 quarters, so</p>
+  <blockquote>FV = 50 × [(1.015)<sup>12</sup> − 1]/0.015 ≈ 652.06</blockquote>
+  <p>Since 12 payments of 50 total 600, the compound interest earned over the three years is 652.06 − 600 = 52.06, a figure the formula hands over directly rather than requiring 12 separate compound interest calculations added together.</p>
+
+  <figure class="chart">
+<svg viewBox='0 0 640 360' role='img' aria-label='A column chart showing the growing balance of a 50 dollar per quarter annuity at 6 percent compounded quarterly, rising from 0 to about 652 dollars after 12 quarters' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='56' y1='320.0' x2='616' y2='320.0' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='73.2' y1='24' x2='73.2' y2='320' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='202.5' y1='317.0' x2='202.5' y2='323.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='202.5' y='336.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3</text>
+  <line x1='331.7' y1='317.0' x2='331.7' y2='323.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='331.7' y='336.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='460.9' y1='317.0' x2='460.9' y2='323.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='460.9' y='336.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>9</text>
+  <line x1='590.2' y1='317.0' x2='590.2' y2='323.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='590.2' y='336.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>12</text>
+  <line x1='70.2' y1='320.0' x2='76.2' y2='320.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='66.2' y='324.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>0</text>
+  <line x1='70.2' y1='235.4' x2='76.2' y2='235.4' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='66.2' y='239.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>200</text>
+  <line x1='70.2' y1='150.9' x2='76.2' y2='150.9' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='66.2' y='154.9' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>400</text>
+  <line x1='70.2' y1='66.3' x2='76.2' y2='66.3' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='66.2' y='70.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>600</text>
+  <rect x='101.7' y='298.9' width='29.3' height='21.1' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='144.7' y='277.4' width='29.3' height='42.6' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='187.8' y='255.6' width='29.3' height='64.4' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='230.9' y='233.5' width='29.3' height='86.5' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='274.0' y='211.1' width='29.3' height='108.9' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='317.0' y='188.3' width='29.3' height='131.7' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='360.1' y='165.2' width='29.3' height='154.8' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='403.2' y='141.7' width='29.3' height='178.3' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='446.3' y='117.9' width='29.3' height='202.1' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='489.4' y='93.7' width='29.3' height='226.3' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='532.4' y='69.2' width='29.3' height='250.8' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='575.5' y='44.3' width='29.3' height='275.7' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <circle cx='590.2' cy='44.3' r='5' fill='#b5651d'/>
+  <text x='590.2' y='34.3' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#b5651d'>quarter 12: $652.06</text>
+  <text x='77.5' y='36.7' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.3' font-weight='normal' fill='#1c1c1c'>balance of a $50 per quarter annuity, 6% compounded quarterly</text>
+  <text x='344.6' y='354.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#5c5c5c'>quarters</text>
+</svg>
+<figcaption><strong>Figure.</strong> The balance of a $50 per quarter annuity at 6 percent compounded quarterly, deposit by deposit, reaching $652.06 after the twelfth and final payment.</figcaption>
+</figure>
+
+  <h2>Present value of an ordinary annuity</h2>
+  <p>The present value of an ordinary annuity answers a different question: what lump sum today is worth exactly the same as the whole stream of future payments? It is given by PV = C × [1 − (1 + i)<sup>−n</sup>]/i. Consider the present value of an annuity of 100 per month for 3.5 years at 6 percent compounded monthly: here i = 0.06/12 = 0.005 per month and n = 3.5 × 12 = 42 months, so</p>
+  <blockquote>PV = 100 × [1 − (1.005)<sup>−42</sup>]/0.005 ≈ 3,779</blockquote>
+  <p>Depositing roughly 3,779 today, at that same monthly rate, would fund exactly 42 monthly withdrawals of 100 each, the present value formula compressing 42 separate payments into a single number comparable to any other lump sum.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 360' role='img' aria-label='A column chart showing the present value of a 100 dollar per month annuity at 0.5 percent per month, rising as more months of payments are included, reaching about 3,779.83 at 42 months' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='58' y1='308.0' x2='620' y2='308.0' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='58.0' y1='24' x2='58.0' y2='308' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='132.9' y1='305.0' x2='132.9' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='132.9' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>6</text>
+  <line x1='207.9' y1='305.0' x2='207.9' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='207.9' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>12</text>
+  <line x1='282.8' y1='305.0' x2='282.8' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='282.8' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>18</text>
+  <line x1='357.7' y1='305.0' x2='357.7' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='357.7' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>24</text>
+  <line x1='432.7' y1='305.0' x2='432.7' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='432.7' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>30</text>
+  <line x1='507.6' y1='305.0' x2='507.6' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='507.6' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>36</text>
+  <line x1='582.5' y1='305.0' x2='582.5' y2='311.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='582.5' y='324.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>42</text>
+  <line x1='55.0' y1='240.4' x2='61.0' y2='240.4' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='244.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1,000</text>
+  <line x1='55.0' y1='172.8' x2='61.0' y2='172.8' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='176.8' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2,000</text>
+  <line x1='55.0' y1='105.1' x2='61.0' y2='105.1' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='109.1' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3,000</text>
+  <line x1='55.0' y1='52.4' x2='61.0' y2='52.4' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='51.0' y='56.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3,779.83</text>
+  <rect x='85.5' y='287.9' width='20.0' height='20.1' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='122.9' y='268.1' width='20.0' height='39.9' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='160.4' y='248.6' width='20.0' height='59.4' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='197.9' y='229.4' width='20.0' height='78.6' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='235.3' y='210.5' width='20.0' height='97.5' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='272.8' y='191.9' width='20.0' height='116.1' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='310.3' y='173.5' width='20.0' height='134.5' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='347.7' y='155.4' width='20.0' height='152.6' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='385.2' y='137.6' width='20.0' height='170.4' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='422.7' y='120.1' width='20.0' height='187.9' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='460.1' y='102.8' width='20.0' height='205.2' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='497.6' y='85.7' width='20.0' height='222.3' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='535.1' y='68.9' width='20.0' height='239.1' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <rect x='572.5' y='52.4' width='20.0' height='255.6' fill='#1f6e5c' opacity='0.85' rx='1.5'/>
+  <line x1='58.0' y1='52.4' x2='582.5' y2='52.4' stroke='#b5651d' stroke-width='1.2' stroke-dasharray='5,4'/>
+  <circle cx='582.5' cy='52.4' r='4' fill='#b5651d'/>
+  <text x='582.5' y='42.4' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#b5651d'>month 42: 3,779.83</text>
+  <text x='83.0' y='37.5' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12.3' font-weight='normal' fill='#1c1c1c'>present value of 100 per month, 0.5% per month</text>
+  <text x='339.0' y='348' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>months</text>
+</svg>
+<figcaption><strong>Figure.</strong> The present value of a 100 per month annuity at 0.5 percent per month, growing as more months of payments are included in the stream, reaching 3,779.83 once all 42 payments are counted.</figcaption>
+</figure>
+
+
+  <h2>Annuity due: paying at the start instead of the end</h2>
+  <p>Since every payment in an annuity due arrives one period earlier than the equivalent ordinary annuity, each of its payments earns exactly one extra period of interest. That is the entire adjustment needed: FV<sub>due</sub> = FV<sub>ordinary</sub> × (1 + i), and PV<sub>due</sub> = PV<sub>ordinary</sub> × (1 + i). For an annuity due of six yearly payments of 200, at 5 percent compounded annually, working through both formulas gives a present value of approximately 1,065 and a future value, at the end of the sixth year, of approximately 1,428.40, both slightly larger than the matching ordinary annuity would produce, exactly the extra period of interest the earlier timing buys.</p>
+
+  <h2>Running the formula backward: loans and sinking funds</h2>
+  <p>Both annuity formulas can be solved for whichever quantity is actually unknown. A loan is usually posed with the present value already fixed, the amount borrowed, and the payment itself is what needs to be found: solving PV = C × [1 − (1 + i)<sup>−n</sup>]/i for C gives C = (PV × i)/[1 − (1 + i)<sup>−n</sup>]. For a 10,000 loan repaid in four equal end of year payments at 6 percent compounded annually,</p>
+  <blockquote>C = (10,000 × 0.06)/[1 − (1.06)<sup>−4</sup>] ≈ 2,885.91</blockquote>
+  <p>so four payments of about 2,885.91 retire a 10,000 loan entirely, the same mathematics as the future value annuity, only read in the opposite direction.</p>
+  <figure class="chart">
+<svg viewBox='0 0 640 340' role='img' aria-label='A line chart showing the balance of a 10,000 dollar loan at 6 percent declining to zero over four equal annual payments of about 2,885.91 each' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='62' y1='300.0' x2='616' y2='300.0' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='95.9' y1='42' x2='95.9' y2='300' stroke='#e7e5e0' stroke-width='1.5'/>
+  <line x1='209.0' y1='297.0' x2='209.0' y2='303.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='209.0' y='316.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>1</text>
+  <line x1='322.0' y1='297.0' x2='322.0' y2='303.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='322.0' y='316.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2</text>
+  <line x1='435.1' y1='297.0' x2='435.1' y2='303.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='435.1' y='316.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>3</text>
+  <line x1='548.2' y1='297.0' x2='548.2' y2='303.0' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='548.2' y='316.0' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>4</text>
+  <line x1='92.9' y1='247.6' x2='98.9' y2='247.6' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='88.9' y='251.6' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>2,500</text>
+  <line x1='92.9' y1='195.1' x2='98.9' y2='195.1' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='88.9' y='199.1' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>5,000</text>
+  <line x1='92.9' y1='142.7' x2='98.9' y2='142.7' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='88.9' y='146.7' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>7,500</text>
+  <line x1='92.9' y1='90.2' x2='98.9' y2='90.2' stroke='#5c5c5c' stroke-width='1'/>
+  <text x='88.9' y='94.2' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>10,000</text>
+  <line x1='95.9' y1='90.2' x2='209.0' y2='138.2' stroke='#1f6e5c' stroke-width='2.4'/>
+  <line x1='209.0' y1='138.2' x2='322.0' y2='189.0' stroke='#1f6e5c' stroke-width='2.4'/>
+  <line x1='322.0' y1='189.0' x2='435.1' y2='242.9' stroke='#1f6e5c' stroke-width='2.4'/>
+  <line x1='435.1' y1='242.9' x2='548.2' y2='300.0' stroke='#1f6e5c' stroke-width='2.4'/>
+  <circle cx='95.9' cy='90.2' r='4' fill='#1f6e5c'/>
+  <circle cx='209.0' cy='138.2' r='4' fill='#1f6e5c'/>
+  <circle cx='322.0' cy='189.0' r='4' fill='#1f6e5c'/>
+  <circle cx='435.1' cy='242.9' r='4' fill='#1f6e5c'/>
+  <circle cx='548.2' cy='300.0' r='4' fill='#1f6e5c'/>
+  <text x='67.7' y='50.4' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='12' font-weight='normal' fill='#1c1c1c'>loan balance after each annual payment of 2,885.91</text>
+  <text x='112.9' y='96.2' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>10,000 borrowed</text>
+  <text x='519.9' y='275.9' text-anchor='start' font-family='Inter,Arial,sans-serif' font-size='11' font-weight='normal' fill='#1c1c1c'>paid off</text>
+  <text x='616.0' y='330.0' text-anchor='end' font-family='Inter,Arial,sans-serif' font-size='11' fill='#5c5c5c'>year</text>
+</svg>
+<figcaption><strong>Figure.</strong> The balance of a 10,000 loan at 6 percent compounded annually, declining to zero after four equal annual payments of about 2,885.91 each.</figcaption>
+</figure>
+
+  <p>A sinking fund runs the future value formula backward instead, solving for the payment C needed to reach a known future target. A machine costing 7000 is to be replaced after eight years, at which point it will have a salvage value of 700, so the fund needs to accumulate 7000 − 700 = 6300 by then. Depositing equal payments at the end of each quarter into a fund earning 8 percent compounded quarterly, with i = 0.08/4 = 0.02 per quarter and n = 4 × 8 = 32 quarters, solving FV = C × [(1 + i)<sup>n</sup> − 1]/i = 6300 for C gives a required quarterly payment of approximately 142, a steady, modest deposit standing in for the much larger replacement cost it is quietly being built up to cover.</p>
+
+  <p>A single deposit, a stream of savings, a loan, and a sinking fund have turned out, across three sets of notes now, to be the same handful of formulas rearranged for whichever quantity is missing. That reuse, more than any individual formula, is the real payoff of treating compound interest and the geometric series as one connected topic rather than as separate tricks.</p>
+
+  <p class="source-note">Source: Ernest F. Haeussler Jr., Richard S. Paul, and Richard J. Wood, <em>Introductory Mathematical Analysis for Business, Economics, and the Life and Social Sciences</em>, 14th edition (Pearson Canada, 2019), chapter 5, covering the future and present value of an ordinary annuity, the annuity due, loan payments, and sinking funds.</p>
+    <div class="post-keywords"><span class="kw-label">Keywords:</span> <span class="kw">future value of an annuity</span> <span class="kw">present value of an annuity</span> <span class="kw">ordinary annuity and annuity due</span> <span class="kw">loan payment formula</span> <span class="kw">sinking fund</span> <span class="kw">mathematics of finance</span></div>
+  <nav class="post-pager">
+    <a class="pager-prev" href="sequences-series-and-the-mathematics-of-saving.html">&larr; Sequences, Series, and the Mathematics of Saving</a>
+    <a class="pager-all" href="math-for-social-sciences.html">All Math for Social Sciences Notes</a>
+    <a class="pager-next" href="an-introduction-to-matrix-algebra.html">An Introduction to Matrix Algebra &rarr;</a>
+  </nav>
+</article>
+
+<footer class="site-footer">
+  <p>deenasalih@outlook.com · Istanbul, Türkiye</p>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=4Ce_HSYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a> ·
+    <a href="https://x.com/DeenaSaleh9" target="_blank" rel="noopener">X</a> ·
+    <a href="https://www.linkedin.com/in/deena-saleh-ph-d-a97951b3/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://orcid.org/0000-0003-4628-4064" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</footer>
+
+</body>
+</html>
