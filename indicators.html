@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indicators — Dr. Deena Saleh</title>
+<meta name="description" content="An interactive chart of World Bank development indicators, GDP per capita, life expectancy, inequality, and school enrollment, across Egypt, Türkiye, and the wider MENA region.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dr. Deena Saleh">
+<meta property="og:title" content="Indicators — Dr. Deena Saleh">
+<meta property="og:description" content="An interactive chart of World Bank development indicators, GDP per capita, life expectancy, inequality, and school enrollment, across Egypt, Türkiye, and the wider MENA region.">
+<meta property="og:url" content="https://deenasalehs.github.io/indicators.html">
+<meta property="og:image" content="https://deenasalehs.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Indicators — Dr. Deena Saleh">
+<meta name="twitter:description" content="An interactive chart of World Bank development indicators, GDP per capita, life expectancy, inequality, and school enrollment, across Egypt, Türkiye, and the wider MENA region.">
+<meta name="twitter:image" content="https://deenasalehs.github.io/assets/og-image.png">
+<link rel="canonical" href="https://deenasalehs.github.io/indicators.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">Deena Saleh</a>
+  <nav class="site-nav">
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="teaching-notes.html">Notes</a>
+    <a href="blog.html">Blog</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="page-head">
+  <p class="kicker"><a href="blog/data-notes.html">Data Notes</a></p>
+  <h1>Indicators</h1>
+  <p class="lede">A small interactive tool built on World Bank data, for Egypt, Türkiye, Jordan, Lebanon, Morocco, Tunisia, Iraq, Saudi Arabia, and the United Arab Emirates. Pick an indicator, toggle countries on or off, and the chart redraws. It ties directly into several of the <a href="teaching-notes.html">Teaching Notes</a> on growth, inequality, and human capital.</p>
+</div>
+
+<section>
+  <div class="indicator-toolbar">
+    <label for="indicator-select" class="indicator-select-label">Indicator</label>
+    <select id="indicator-select"></select>
+    <button type="button" id="live-btn" class="btn-live">Try live data</button>
+  </div>
+
+  <div class="country-toggles" id="country-toggles"></div>
+
+  <div class="chart-card">
+    <canvas id="indicator-chart" height="110"></canvas>
+  </div>
+
+  <div class="indicator-meta">
+    <span id="indicator-note"></span>
+    <span id="data-status">Showing saved figures retrieved from the World Bank in October 2026.</span>
+  </div>
+
+  <div class="callout" style="margin-top:36px;">
+    <h5>Where the numbers come from</h5>
+    <p>All figures are pulled from the World Bank's Open Data service (World Development Indicators). The "Try live data" button asks a visitor's own browser to fetch the latest figures directly from the World Bank's API; if that request does not go through, for instance if the browser blocks it, the chart simply keeps showing the saved snapshot above, and says so. Nothing here is sent anywhere, the request only reads public data.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>deenasalih@outlook.com · Istanbul, Türkiye</p>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=4Ce_HSYAAAAJ&amp;view_op=list_works&amp;sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a> ·
+    <a href="https://x.com/DeenaSaleh9" target="_blank" rel="noopener">X</a> ·
+    <a href="https://www.linkedin.com/in/deena-saleh-ph-d-a97951b3/" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://orcid.org/0000-0003-4628-4064" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</footer>
+
+<script>
+(function(){
+
+  var COUNTRIES = [
+    {code:'eg', name:'Egypt',                 color:'#1f6e5c'},
+    {code:'tr', name:'Türkiye',                color:'#b5651d'},
+    {code:'jo', name:'Jordan',                 color:'#3d6ea5'},
+    {code:'lb', name:'Lebanon',                color:'#8b5fbf'},
+    {code:'ma', name:'Morocco',                color:'#c9a227'},
+    {code:'tn', name:'Tunisia',                color:'#c1446e'},
+    {code:'iq', name:'Iraq',                   color:'#4f7942'},
+    {code:'sa', name:'Saudi Arabia',           color:'#6b6b6b'},
+    {code:'ae', name:'United Arab Emirates',   color:'#d1793d'}
+  ];
+
+  var DEFAULT_COUNTRIES = ['eg','tr','jo','lb'];
+
+  var INDICATORS = [
+    { key:'gdp',    label:'GDP per capita',               unit:'constant 2015 US$',
+      wb:'NY.GDP.PCAP.KD',
+      note:'A standard, if imperfect, yardstick for average living standards. It says nothing about how income is distributed within a country.' },
+    { key:'life',   label:'Life expectancy at birth',      unit:'years',
+      wb:'SP.DYN.LE00.IN',
+      note:'A core health outcome and one of the clearest single measures of human capital. Most countries show a dip around 2020 to 2021.' },
+    { key:'gini',   label:'Gini index (inequality)',        unit:'0 is perfect equality, 100 is perfect inequality',
+      wb:'SI.POV.GINI',
+      note:'Reported irregularly, often only every few years, and not every country publishes it. Saudi Arabia currently has no public figure, so it will not appear on this chart.' },
+    { key:'enroll', label:'Secondary school enrollment',    unit:'% gross',
+      wb:'SE.SEC.ENRR',
+      note:'Gross enrollment can run above 100 percent where students outside the typical secondary age range are enrolled.' },
+    { key:'unemploy', label:'Unemployment rate',             unit:'% of total labor force, modeled ILO estimate',
+      wb:'SL.UEM.TOTL.ZS',
+      note:'A modeled estimate, meant for comparing countries on a common basis rather than matching each country\'s own official figure exactly.' },
+    { key:'poverty', label:'Poverty rate',                   unit:'% below the international poverty line, $3.00 a day, 2021 PPP',
+      wb:'SI.POV.DDAY',
+      note:'Reported irregularly and missing for Saudi Arabia and the United Arab Emirates, which do not publish it. The World Bank revised this line upward in 2025, so older figures you may have seen elsewhere used a $2.15 line and are not directly comparable to the numbers here.' },
+    { key:'remit', label:'Remittances received',             unit:'% of GDP',
+      wb:'BX.TRF.PWKR.DT.GD.ZS',
+      note:'Money sent home by citizens working abroad. The United Arab Emirates is omitted, it is a net sender of remittances rather than a recipient, so the World Bank does not publish a comparable inflow figure for it.' },
+    { key:'popgrowth', label:'Population growth',            unit:'annual %',
+      wb:'SP.POP.GROW',
+      note:'Includes migration as well as births and deaths, which is why Jordan and Lebanon swing so sharply around the Syrian refugee crisis and Lebanon\'s economic collapse.' }
+  ];
+
+  var DATA = {
+    gdp: {"eg":{"2005":2635.7,"2006":2761.6,"2007":2902.1,"2008":3052.2,"2009":3135.1,"2010":3233.8,"2011":3222.4,"2012":3221.0,"2013":3216.4,"2014":3235.7,"2015":3307.0,"2016":3381.2,"2017":3452.9,"2018":3568.6,"2019":3701.2,"2020":3770.9,"2021":3837.3,"2022":4029.8,"2023":4111.3},
+          "tr":{"2005":7623.1,"2006":8078.5,"2007":8477.5,"2008":8447.9,"2009":7925.3,"2010":8472.6,"2011":9265.9,"2012":9588.3,"2013":10269.4,"2014":10598.0,"2015":11064.6,"2016":11279.6,"2017":12005.6,"2018":12255.0,"2019":12238.3,"2020":12338.6,"2021":13670.9,"2022":14273.6,"2023":14932.9},
+          "jo":{"2005":4533.0,"2006":4596.6,"2007":4681.2,"2008":4902.4,"2009":5043.6,"2010":5066.5,"2011":5086.0,"2012":5135.0,"2013":5007.8,"2014":4703.4,"2015":4441.6,"2016":4326.2,"2017":4335.9,"2018":4320.0,"2019":4313.8,"2020":4188.2,"2021":4266.4,"2022":4309.6,"2023":4373.4},
+          "lb":{"2005":6707.2,"2006":6696.4,"2007":7179.3,"2008":7701.3,"2009":8375.5,"2010":8955.5,"2011":8936.2,"2012":8920.8,"2013":8443.5,"2014":7830.4,"2015":7714.1,"2016":8019.1,"2017":8305.6,"2018":8388.7,"2019":8064.0,"2020":6440.8,"2021":5973.4,"2022":5909.0,"2023":5834.6},
+          "ma":{"2005":2342.2,"2006":2490.0,"2007":2540.6,"2008":2648.6,"2009":2710.7,"2010":2767.0,"2011":2879.5,"2012":2927.5,"2013":3008.2,"2014":3051.5,"2015":3146.2,"2016":3124.4,"2017":3242.6,"2018":3304.7,"2019":3364.7,"2020":3090.9,"2021":3309.1,"2022":3334.9,"2023":3421.2},
+          "tn":{"2005":3301.9,"2006":3444.6,"2007":3642.1,"2008":3760.1,"2009":3835.3,"2010":3906.9,"2011":3784.7,"2012":3900.0,"2013":3947.6,"2014":4021.6,"2015":4014.9,"2016":4015.3,"2017":4062.8,"2018":4128.0,"2019":4153.3,"2020":3749.3,"2021":3902.5,"2022":3986.5,"2023":3967.3},
+          "iq":{"2005":3310.9,"2006":3472.0,"2007":3565.6,"2008":3781.8,"2009":3768.2,"2010":3881.9,"2011":4030.0,"2012":4387.9,"2013":4504.8,"2014":4447.0,"2015":4440.1,"2016":4932.9,"2017":4736.3,"2018":4749.0,"2019":4898.1,"2020":4214.0,"2021":4182.5,"2022":4413.0,"2023":4337.1},
+          "sa":{"2005":21838.2,"2006":21616.3,"2007":21196.8,"2008":21629.8,"2009":20577.5,"2010":21830.1,"2011":23314.6,"2012":23643.0,"2013":23057.3,"2014":23404.7,"2015":23256.2,"2016":22783.0,"2017":23035.1,"2018":24393.5,"2019":24905.7,"2020":22827.7,"2021":24922.7,"2022":26706.9,"2023":25634.8},
+          "ae":{"2005":55363.6,"2006":56630.0,"2007":52038.6,"2008":47922.7,"2009":42672.2,"2010":42328.8,"2011":43687.8,"2012":43958.6,"2013":44312.6,"2014":44257.7,"2015":44910.3,"2016":45168.5,"2017":43293.0,"2018":43377.8,"2019":43468.5,"2020":39878.5,"2021":40935.9,"2022":41828.6,"2023":41926.6}},
+    life: {"eg":{"2005":68.4,"2006":68.5,"2007":68.6,"2008":68.8,"2009":68.9,"2010":69.1,"2011":69.2,"2012":69.5,"2013":69.6,"2014":69.9,"2015":70.1,"2016":70.4,"2017":70.7,"2018":71.0,"2019":71.2,"2020":69.8,"2021":69.0,"2022":71.0,"2023":71.6},
+           "tr":{"2005":73.5,"2006":73.8,"2007":74.1,"2008":74.4,"2009":74.7,"2010":75.0,"2011":74.8,"2012":75.6,"2013":76.2,"2014":76.5,"2015":76.5,"2016":76.6,"2017":77.0,"2018":77.5,"2019":77.7,"2020":76.5,"2021":75.7,"2022":77.6,"2023":77.2},
+           "jo":{"2005":73.0,"2006":73.2,"2007":73.4,"2008":73.6,"2009":73.7,"2010":73.8,"2011":73.9,"2012":74.1,"2013":74.3,"2014":74.6,"2015":75.1,"2016":75.6,"2017":76.1,"2018":76.5,"2019":76.9,"2020":75.6,"2021":74.2,"2022":77.1,"2023":77.8},
+           "lb":{"2005":76.1,"2006":75.7,"2007":76.7,"2008":77.0,"2009":77.3,"2010":77.5,"2011":77.8,"2012":77.9,"2013":78.0,"2014":78.1,"2015":78.3,"2016":78.3,"2017":78.2,"2018":78.3,"2019":78.2,"2020":76.3,"2021":73.7,"2022":78.0,"2023":77.8},
+           "ma":{"2005":68.7,"2006":69.2,"2007":69.6,"2008":70.1,"2009":70.5,"2010":70.8,"2011":71.3,"2012":71.7,"2013":72.1,"2014":72.5,"2015":72.9,"2016":73.2,"2017":73.6,"2018":73.9,"2019":74.2,"2020":73.1,"2021":73.4,"2022":75.2,"2023":75.3},
+           "tn":{"2005":73.7,"2006":73.9,"2007":74.0,"2008":74.2,"2009":74.3,"2010":74.4,"2011":74.5,"2012":74.6,"2013":74.7,"2014":74.8,"2015":74.9,"2016":75.0,"2017":75.2,"2018":75.4,"2019":75.6,"2020":75.0,"2021":72.9,"2022":76.1,"2023":76.5},
+           "iq":{"2005":64.9,"2006":64.0,"2007":64.4,"2008":66.5,"2009":67.8,"2010":68.1,"2011":68.4,"2012":68.8,"2013":69.0,"2014":69.7,"2015":70.0,"2016":68.7,"2017":69.8,"2018":71.1,"2019":71.2,"2020":69.7,"2021":70.7,"2022":72.0,"2023":72.3},
+           "sa":{"2005":74.4,"2006":74.8,"2007":75.1,"2008":75.3,"2009":75.4,"2010":75.6,"2011":75.8,"2012":76.1,"2013":76.5,"2014":77.1,"2015":77.8,"2016":78.4,"2017":78.7,"2018":78.8,"2019":78.3,"2020":77.6,"2021":77.1,"2022":77.3,"2023":78.7},
+           "ae":{"2005":80.8,"2006":81.2,"2007":81.4,"2008":81.6,"2009":81.7,"2010":81.9,"2011":81.9,"2012":81.9,"2013":82.0,"2014":82.0,"2015":82.1,"2016":82.2,"2017":82.4,"2018":82.4,"2019":82.6,"2020":81.9,"2021":79.1,"2022":80.5,"2023":82.9}},
+    gini: {"eg":{"2004":31.8,"2008":31.1,"2010":30.2,"2012":28.3,"2015":31.8,"2017":31.5,"2019":31.9,"2021":28.5},
+           "tr":{"2002":41.4,"2003":42.2,"2004":41.3,"2005":42.6,"2006":39.6,"2007":38.4,"2008":39,"2009":39,"2010":38.8,"2011":40,"2012":40.2,"2013":40.2,"2014":41.2,"2015":42.9,"2016":41.9,"2017":43.5,"2018":42.4,"2019":43.8,"2020":43,"2021":44.4,"2022":44.5,"2023":43.7},
+           "jo":{"2002":37,"2006":33.9,"2008":32.6,"2010":33.7},
+           "lb":{"2011":31.8,"2022":35.5},
+           "ma":{"2000":40.6,"2006":40.7,"2013":39.5},
+           "tn":{"2000":40.8,"2005":37.7,"2010":38.5,"2015":32.8,"2021":33.7},
+           "iq":{"2006":28.6,"2012":29.5,"2023":29.8},
+           "ae":{"2013":32.5,"2018":26.4}},
+    enroll: {"eg":{"2009":63.2,"2010":64.7,"2011":72.5,"2012":73.0,"2013":73.9,"2014":73.4,"2016":75.8,"2017":76.4,"2018":77.0,"2019":77.9,"2020":79.7,"2021":81.9,"2023":84.5},
+             "tr":{"2005":84.9,"2006":88.6,"2007":90.7,"2008":89.1,"2009":80.2,"2010":84.2,"2011":87.8,"2012":85.0,"2013":102.2,"2014":106.0,"2015":107.2,"2016":108.5,"2017":113.0,"2018":112.1,"2019":111.9,"2020":112.5,"2021":114.1,"2022":116.0,"2023":118.4},
+             "jo":{"2005":84.4,"2006":86.8,"2007":87.7,"2008":88.4,"2010":87.4,"2011":87.6,"2012":87.2,"2013":87.3,"2014":88.9,"2017":88.9,"2018":89.8,"2019":89.5,"2020":90.2,"2021":90.1,"2022":91.0,"2023":92.0},
+             "lb":{"2005":66.4,"2006":67.2,"2007":68.0,"2008":68.9,"2009":71.1,"2010":70.6,"2011":73.8,"2012":72.2,"2013":71.2,"2014":59.3,"2015":58.1,"2016":59.5,"2017":63.1,"2018":64.2,"2019":65.3,"2020":65.9,"2021":67.5,"2022":64.5,"2023":62.8},
+             "ma":{"2005":49.2,"2006":52.2,"2007":55.3,"2008":57.7,"2009":60.7,"2010":63.1,"2011":66.0,"2012":68.7,"2017":78.2,"2018":78.5,"2019":79.3,"2020":80.3,"2021":80.7,"2022":84.5,"2023":87.7},
+             "tn":{"2005":83.4,"2006":86.0,"2007":89.6,"2008":91.1,"2009":88.8,"2010":88.1,"2011":89.3,"2013":87.2,"2014":85.0,"2015":85.8,"2016":90.3},
+             "iq":{"2007":50.6},
+             "sa":{"2005":87.1,"2007":91.7,"2009":99.8,"2013":93.0,"2014":98.8,"2015":103.0,"2016":105.5,"2017":106.2,"2018":106.4,"2019":104.0,"2020":104.4,"2021":104.3,"2022":122.2},
+             "ae":{"2018":102.2,"2019":101.7,"2020":99.2,"2021":103.2,"2022":102.4,"2023":101.9}},
+    unemploy: {"eg":{"2005":11.0,"2006":10.5,"2007":8.8,"2008":8.5,"2009":9.1,"2010":8.8,"2011":11.8,"2012":12.6,"2013":13.2,"2014":13.1,"2015":13.1,"2016":12.5,"2017":11.8,"2018":9.9,"2019":7.9,"2020":8.0,"2021":7.4,"2022":6.5,"2023":6.8},
+              "tr":{"2005":10.6,"2006":10.2,"2007":10.3,"2008":11.0,"2009":14.0,"2010":11.9,"2011":9.8,"2012":9.2,"2013":9.7,"2014":9.9,"2015":10.3,"2016":10.9,"2017":10.9,"2018":11.0,"2019":13.7,"2020":13.1,"2021":12.0,"2022":10.5,"2023":9.4},
+              "jo":{"2005":14.8,"2006":14.0,"2007":13.1,"2008":12.7,"2009":12.9,"2010":12.5,"2011":12.9,"2012":12.2,"2013":12.6,"2014":11.9,"2015":13.1,"2016":15.3,"2017":18.1,"2018":18.3,"2019":16.8,"2020":19.2,"2021":19.8,"2022":18.2,"2023":16.6},
+              "lb":{"2005":8.2,"2006":8.7,"2007":9.0,"2008":7.7,"2009":6.4,"2010":6.8,"2011":7.4,"2012":8.0,"2013":8.5,"2014":8.8,"2015":9.3,"2016":9.8,"2017":10.3,"2018":10.8,"2019":11.3,"2020":13.3,"2021":12.7,"2022":11.1,"2023":11.0},
+              "ma":{"2005":11.0,"2006":9.7,"2007":9.6,"2008":9.6,"2009":9.0,"2010":9.1,"2011":8.9,"2012":9.0,"2013":9.2,"2014":9.7,"2015":9.5,"2016":9.3,"2017":9.2,"2018":9.3,"2019":9.2,"2020":11.2,"2021":10.6,"2022":9.4,"2023":8.9},
+              "tn":{"2005":12.9,"2006":12.5,"2007":12.4,"2008":12.4,"2009":13.3,"2010":13.0,"2011":18.3,"2012":17.6,"2013":15.9,"2014":14.3,"2015":15.2,"2016":15.6,"2017":15.3,"2018":15.5,"2019":17.2,"2020":17.7,"2021":16.6,"2022":15.3,"2023":15.1},
+              "iq":{"2005":8.6,"2006":8.4,"2007":8.6,"2008":8.5,"2009":8.4,"2010":8.3,"2011":8.2,"2012":8.0,"2013":9.2,"2014":10.6,"2015":10.9,"2016":10.8,"2017":13.0,"2018":13.5,"2019":14.1,"2020":15.8,"2021":16.2,"2022":15.4,"2023":15.2},
+              "sa":{"2005":6.1,"2006":6.3,"2007":5.7,"2008":5.1,"2009":5.4,"2010":5.6,"2011":5.8,"2012":5.6,"2013":5.6,"2014":5.9,"2015":5.6,"2016":5.6,"2017":5.9,"2018":6.0,"2019":5.6,"2020":7.7,"2021":6.6,"2022":5.6,"2023":4.0},
+              "ae":{"2005":3.1,"2006":3.0,"2007":2.9,"2008":2.8,"2009":2.9,"2010":2.8,"2011":2.6,"2012":2.3,"2013":2.1,"2014":2.0,"2015":1.8,"2016":1.6,"2017":2.5,"2018":2.2,"2019":2.3,"2020":4.3,"2021":3.1,"2022":2.9,"2023":2.2}},
+    poverty: {"eg":{"2004":4.1,"2008":3.7,"2010":1.5,"2012":1.2,"2015":1.2,"2017":3.1,"2019":2,"2021":1.4},
+              "tr":{"2002":7.6,"2003":10,"2004":6.6,"2005":6.5,"2006":4.8,"2007":4,"2008":3.3,"2009":3,"2010":2.8,"2011":2,"2012":1.7,"2013":1.5,"2014":1,"2015":1.3,"2016":0.9,"2017":1.1,"2018":1,"2019":1.3,"2020":1.1,"2021":0.9,"2022":0.5,"2023":0.2},
+              "jo":{"2002":1,"2006":0.3,"2008":0.1,"2010":0.1},
+              "lb":{"2011":0.1,"2022":5.8},
+              "ma":{"2000":16.8,"2006":9.4,"2013":3.7},
+              "tn":{"2000":10.5,"2005":5.9,"2010":3.1,"2015":0.7,"2021":0.7},
+              "iq":{"2006":0.6,"2012":0.6,"2023":0.5}},
+    remit: {"eg":{"2005":5.60,"2006":4.96,"2007":5.87,"2008":5.34,"2009":3.78,"2010":5.69,"2011":6.07,"2012":6.89,"2013":6.18,"2014":6.40,"2015":5.56,"2016":5.59,"2017":9.96,"2018":9.72,"2019":8.40,"2020":7.71,"2021":7.41,"2022":5.94,"2023":4.93},
+            "tr":{"2005":0.27,"2006":0.33,"2007":0.31,"2008":0.31,"2009":0.28,"2010":0.23,"2011":0.22,"2012":0.21,"2013":0.20,"2014":0.18,"2015":0.16,"2016":0.14,"2017":0.12,"2018":0.15,"2019":0.11,"2020":0.11,"2021":0.09,"2022":0.08,"2023":0.09},
+            "jo":{"2005":19.23,"2006":18.56,"2007":19.44,"2008":13.68,"2009":12.62,"2010":12.00,"2011":11.29,"2012":11.04,"2013":14.11,"2014":15.71,"2015":12.62,"2016":10.01,"2017":9.73,"2018":9.43,"2019":9.38,"2020":10.05,"2021":10.00,"2022":8.92,"2023":7.77},
+            "lb":{"2005":22.91,"2006":23.62,"2007":23.24,"2008":24.66,"2009":21.35,"2010":17.98,"2011":17.23,"2012":15.16,"2013":16.14,"2014":14.95,"2015":14.98,"2016":14.87,"2017":13.32,"2018":12.71,"2019":14.28,"2020":20.79,"2021":27.47,"2022":30.66,"2023":33.35},
+            "ma":{"2005":6.67,"2006":7.18,"2007":7.74,"2008":6.77,"2009":6.20,"2010":6.37,"2011":6.59,"2012":6.09,"2013":5.95,"2014":6.54,"2015":6.25,"2016":5.72,"2017":5.76,"2018":5.43,"2019":5.40,"2020":6.11,"2021":7.68,"2022":8.51,"2023":8.05},
+            "tn":{"2005":4.32,"2006":4.39,"2007":4.41,"2008":4.41,"2009":4.52,"2010":4.47,"2011":4.17,"2012":4.79,"2013":4.70,"2014":4.67,"2015":4.31,"2016":4.11,"2017":4.48,"2018":3.98,"2019":4.27,"2020":5.37,"2021":6.30,"2022":6.25,"2023":5.96},
+            "iq":{"2005":1.42,"2006":0.60,"2007":0.00,"2008":0.05,"2009":0.14,"2010":0.13,"2011":0.12,"2012":0.12,"2013":0.31,"2014":0.32,"2015":0.60,"2016":0.59,"2017":0.58,"2018":0.33,"2019":0.37,"2020":0.36,"2021":0.40,"2022":0.38,"2023":0.43},
+            "sa":{"2005":0.03,"2006":0.03,"2007":0.03,"2008":0.04,"2009":0.05,"2010":0.04,"2011":0.04,"2012":0.03,"2013":0.03,"2014":0.03,"2015":0.04,"2016":0.05,"2017":0.04,"2018":0.04,"2019":0.04,"2020":0.04,"2021":0.03,"2022":0.02,"2023":0.03}},
+    popgrowth: {"eg":{"2005":2.02,"2006":1.95,"2007":1.89,"2008":1.87,"2009":1.89,"2010":1.92,"2011":2.1,"2012":2.24,"2013":2.31,"2014":2.28,"2015":2.1,"2016":2.03,"2017":2,"2018":1.9,"2019":1.75,"2020":1.62,"2021":1.49,"2022":1.49,"2023":1.69},
+               "tr":{"2005":1.07,"2006":1.03,"2007":0.16,"2008":1.27,"2009":1.38,"2010":1.52,"2011":1.47,"2012":1.27,"2013":1.28,"2014":1.35,"2015":1.33,"2016":1.35,"2017":1.3,"2018":1.35,"2019":1.43,"2020":0.97,"2021":0.91,"2022":0.98,"2023":0.41},
+               "jo":{"2005":2.48,"2006":6.39,"2007":6.04,"2008":2.35,"2009":2.15,"2010":2.15,"2011":2.48,"2012":1.42,"2013":5.2,"2014":9.54,"2015":8.22,"2016":4.72,"2017":2.25,"2018":2.2,"2019":1.98,"2020":1.8,"2021":1.83,"2022":1.7,"2023":1.61},
+               "lb":{"2005":1.55,"2006":1.7,"2007":1.94,"2008":1.66,"2009":1.35,"2010":0.98,"2011":1.08,"2012":2.7,"2013":9.25,"2014":9.99,"2015":1.96,"2016":-2.34,"2017":-2.61,"2018":-2.9,"2019":-3.22,"2020":-1.6,"2021":0.28,"2022":0.46,"2023":0.5},
+               "ma":{"2005":1.34,"2006":1.35,"2007":1.34,"2008":1.34,"2009":1.33,"2010":1.35,"2011":1.36,"2012":1.34,"2013":1.29,"2014":1.23,"2015":1.17,"2016":1.19,"2017":1.2,"2018":1.1,"2019":1.03,"2020":1.03,"2021":1.01,"2022":1.01,"2023":1.02},
+               "tn":{"2005":0.87,"2006":0.88,"2007":0.92,"2008":0.96,"2009":1.02,"2010":1.08,"2011":1.11,"2012":1.13,"2013":1.19,"2014":1.19,"2015":1.13,"2016":1.1,"2017":1.05,"2018":0.98,"2019":0.93,"2020":0.83,"2021":0.62,"2022":0.59,"2023":0.67},
+               "iq":{"2005":2.96,"2006":0.73,"2007":-0.79,"2008":2.02,"2009":3.68,"2010":3.23,"2011":3.53,"2012":4.54,"2013":4.72,"2014":3.53,"2015":2.73,"2016":2.39,"2017":2.23,"2018":2.33,"2019":2.28,"2020":2.22,"2021":2.24,"2022":2.29,"2023":2.25},
+               "sa":{"2005":4.43,"2006":4.28,"2007":4.15,"2008":4.03,"2009":3.91,"2010":-0.99,"2011":4.54,"2012":4.2,"2013":5.41,"2014":2.45,"2015":5.19,"2016":3.75,"2017":0.07,"2018":-2.55,"2019":-0.44,"2020":4.83,"2021":-2.46,"2022":4.42,"2023":4.64},
+               "ae":{"2005":5.19,"2006":7.12,"2007":11.59,"2008":11.38,"2009":6.22,"2010":2.4,"2011":3.36,"2012":3.96,"2013":4,"2014":4.65,"2015":5.38,"2016":4.93,"2017":3.17,"2018":1.33,"2019":1.05,"2020":-0.47,"2021":1.84,"2022":5.09,"2023":3.98}}
+  };
+
+  var checked = {};
+  DEFAULT_COUNTRIES.forEach(function(c){ checked[c] = true; });
+
+  var selectEl = document.getElementById('indicator-select');
+  var togglesEl = document.getElementById('country-toggles');
+  var noteEl = document.getElementById('indicator-note');
+  var statusEl = document.getElementById('data-status');
+  var liveBtn = document.getElementById('live-btn');
+  var chart = null;
+
+  var params = new URLSearchParams(window.location.search);
+  var requested = params.get('i');
+  var currentKey = INDICATORS.some(function(i){ return i.key === requested; }) ? requested : 'gdp';
+
+  INDICATORS.forEach(function(ind){
+    var opt = document.createElement('option');
+    opt.value = ind.key;
+    opt.textContent = ind.label + ' (' + ind.unit + ')';
+    if (ind.key === currentKey) opt.selected = true;
+    selectEl.appendChild(opt);
+  });
+
+  COUNTRIES.forEach(function(c){
+    var label = document.createElement('label');
+    label.className = 'country-chip';
+    var input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = !!checked[c.code];
+    input.addEventListener('change', function(){
+      checked[c.code] = input.checked;
+      draw();
+    });
+    var span = document.createElement('span');
+    span.textContent = c.name;
+    span.style.borderColor = input.checked ? c.color : '';
+    label.appendChild(input);
+    label.appendChild(span);
+    togglesEl.appendChild(label);
+  });
+
+  function currentIndicator(){
+    var key = selectEl.value;
+    for (var i = 0; i < INDICATORS.length; i++){ if (INDICATORS[i].key === key) return INDICATORS[i]; }
+    return INDICATORS[0];
+  }
+
+  function draw(){
+    var ind = currentIndicator();
+    noteEl.textContent = ind.note;
+
+    var years = {};
+    var activeCountries = COUNTRIES.filter(function(c){ return checked[c.code]; });
+    activeCountries.forEach(function(c){
+      var series = (DATA[ind.key] || {})[c.code] || {};
+      Object.keys(series).forEach(function(y){ years[y] = true; });
+    });
+    var sortedYears = Object.keys(years).sort();
+
+    var datasets = activeCountries.map(function(c){
+      var series = (DATA[ind.key] || {})[c.code] || {};
+      return {
+        label: c.name,
+        data: sortedYears.map(function(y){ return series.hasOwnProperty(y) ? series[y] : null; }),
+        borderColor: c.color,
+        backgroundColor: c.color,
+        spanGaps: true,
+        tension: 0.15,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        borderWidth: 2
+      };
+    });
+
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById('indicator-chart'), {
+      type: 'line',
+      data: { labels: sortedYears, datasets: datasets },
+      options: {
+        responsive: true,
+        interaction: { mode: 'nearest', intersect: false },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Inter', size: 12 } } },
+          tooltip: { callbacks: { label: function(ctx){
+            return ctx.dataset.label + ': ' + (ctx.parsed.y === null ? 'no data' : ctx.parsed.y.toLocaleString());
+          } } }
+        },
+        scales: {
+          y: { ticks: { font: { family: 'Inter', size: 11 } }, title: { display: true, text: ind.unit, font: { family: 'Inter', size: 11 } } },
+          x: { ticks: { font: { family: 'Inter', size: 11 } } }
+        }
+      }
+    });
+  }
+
+  selectEl.addEventListener('change', function(){
+    draw();
+    document.querySelectorAll('.country-chip span').forEach(function(span, idx){
+      span.style.borderColor = checked[COUNTRIES[idx].code] ? COUNTRIES[idx].color : '';
+    });
+  });
+
+  liveBtn.addEventListener('click', function(){
+    var ind = currentIndicator();
+    var codes = COUNTRIES.map(function(c){ return c.code; }).join(';');
+    statusEl.textContent = 'Checking for live figures…';
+    fetch('https://api.worldbank.org/v2/country/' + codes + '/indicator/' + ind.wb + '?format=json&per_page=2000&date=2000:2026')
+      .then(function(r){ if (!r.ok) throw new Error('bad response'); return r.json(); })
+      .then(function(json){
+        var rows = json[1];
+        if (!rows) throw new Error('no data');
+        var fresh = {};
+        rows.forEach(function(row){
+          if (row.value === null || row.value === undefined) return;
+          var code = (row.countryiso2code || '').toLowerCase();
+          if (!fresh[code]) fresh[code] = {};
+          fresh[code][row.date] = Math.round(row.value * 10) / 10;
+        });
+        DATA[ind.key] = fresh;
+        draw();
+        statusEl.textContent = 'Live figures loaded just now from the World Bank API.';
+      })
+      .catch(function(){
+        statusEl.textContent = 'Live refresh was not available in this browser just now, showing saved figures retrieved October 2026.';
+      });
+  });
+
+  draw();
+})();
+</script>
+
+</body>
+</html>
